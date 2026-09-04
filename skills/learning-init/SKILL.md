@@ -65,6 +65,22 @@ can object to exactly the one that is wrong for them. A question with no
 recommendation is work you have pushed onto the person you are supposed to be
 helping.
 
+**Render every question in exactly this shape:**
+
+```
+❓ **Q3 — The canon: who wins when two sources disagree**
+
+<the question, with the evidence you gathered and the options>
+
+➡️ <the recommended answer>
+```
+
+The ❓ makes the questions findable when the round is long, and **the
+recommendation goes on its own line, never trailing the question text**. Run them
+together and the learner has to parse where the asking stops and the advice
+starts — on a round of seven that is the difference between answering and
+skimming.
+
 Number them. Keep each question to a decision that changes what gets built.
 Find facts yourself — read their existing notes, look at the books on disk, check
 what the documentation for their framework actually looks like. **Never ask the
@@ -73,6 +89,22 @@ learner for anything you could look up.**
 Ground every question in their subject. "What is a source in your field?" is
 unanswerable; "You named Kolmogorov–Fomin and Zorich — when they state the same
 theorem differently, which one wins?" is answerable.
+
+## Before phase 1: preflight
+
+Check what the machine can actually do, and report it as part of the greeting.
+This is not ceremony — **the answers to Q6 depend on it**, and finding out later
+that the checks cannot run turns the trustworthiness scale into decoration.
+
+- `uv` present, or a `python3` whose `-m venv` can bootstrap pip. Without one of
+  the two, `make setup` cannot build the project's environment.
+- For a subject whose checks are executable: does its toolchain run *here*? A
+  test runner that needs Node 20 on a machine with Node 18 is a blocker for
+  `strict`, not a detail to mention in passing.
+- Whatever else the subject leans on — a compiler, a typechecker, Tesseract for a
+  book corpus.
+
+Report the blockers **before** asking Q6, and let them change the recommendation.
 
 ## Phase 1
 

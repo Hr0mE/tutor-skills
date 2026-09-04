@@ -42,10 +42,7 @@ export TUTOR_PROJECT_ROOT := $(CURDIR)
 .DEFAULT_GOAL := help
 
 setup:           ## create .venv and install the one dependency (PyYAML)
-	@command -v uv >/dev/null 2>&1 \
-	  && uv venv --quiet && uv pip install --quiet pyyaml \
-	  || (python3 -m venv .venv && .venv/bin/pip install --quiet pyyaml)
-	@echo "✓ .venv ready. Now: make check"
+	@$(shell command -v python3) $(TUTOR)/scripts/setup_venv.py
 
 help:            ## show this list
 \t@grep -hE '^[a-zA-Z_-]+:.*?## ' $(MAKEFILE_LIST) \\

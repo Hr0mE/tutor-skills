@@ -64,31 +64,43 @@ You will get one round of numbered questions, each with a recommended answer. An
 
 An abridged real exchange:
 
-> **Q1 — Subject, and what "I know this" would feel like.** What is being learned, and what is the itch? ➡️ Recommend naming the itch rather than a topic list.
+> ❓ **Q1 — Subject, and what "I know this" would feel like.** What is being learned, and what is the itch?
+>
+> ➡️ Recommend naming the itch rather than a topic list.
 >
 > — React. I can write components but I copy patterns without knowing why they work. I want the "I've seen this before but never understood it" feeling gone.
 >
-> **Q2 — Corpus or live sources.** I see no PDFs on disk, so this looks like a live-documentation subject: citations reach a URL plus a **version**, and nothing is quoted from a book. ➡️ Recommend live sources, `require_version: true` — React 18 and React 19 are different claims about `useEffect`.
+> ❓ **Q2 — Corpus or live sources.** I see no PDFs on disk, so this looks like a live-documentation subject: citations reach a URL plus a **version**, and nothing is quoted from a book.
+>
+> ➡️ Recommend live sources, `require_version: true` — React 18 and React 19 are different claims about `useEffect`.
 >
 > — Yes.
 >
-> **Q3 — The canon: who wins when two sources disagree.** Which work arbitrates each area? Which problem set is primary, and where do popular sources — videos, blog posts — sit? ➡️ Recommend: the official documentation arbitrates, pinned to a version; the framework's source is the last word when the docs are silent or wrong. Popular sources into the everyday level only, never outweighing the canon. And expect this table to change in phase 2 — it is the thing the material revises most often.
+> ❓ **Q3 — The canon: who wins when two sources disagree.** Which work arbitrates each area? Which problem set is primary, and where do popular sources — videos, blog posts — sit?
+>
+> ➡️ Recommend: the official documentation arbitrates, pinned to a version; the framework's source is the last word when the docs are silent or wrong. Popular sources into the everyday level only, never outweighing the canon. And expect this table to change in phase 2 — it is the thing the material revises most often.
 >
 > — Agreed, and blog posts have burned me before.
 >
-> **Q4 — Depth levels.** All three, or does this subject not support one? ➡️ Recommend keeping all three and letting individual pages declare one inapplicable with a reason. An everyday analogy for `useEffect` earns its place; one for JSX syntax does not.
+> ❓ **Q4 — Depth levels.** All three, or does this subject not support one?
+>
+> ➡️ Recommend keeping all three and letting individual pages declare one inapplicable with a reason. An everyday analogy for `useEffect` earns its place; one for JSX syntax does not.
 >
 > — Agreed.
 >
-> **Q5 — Where problems come from.** React has no problem sets. What is the local shape of a problem? ➡️ Recommend a repository with a failing test. The "break the condition" role gets stronger here than in any book subject: remove the dependency array and you can watch it break.
+> ❓ **Q5 — Where problems come from.** React has no problem sets. What is the local shape of a problem?
+>
+> ➡️ Recommend a repository with a failing test. The "break the condition" role gets stronger here than in any book subject: remove the dependency array and you can watch it break.
 >
 > — Failing tests, yes.
 >
-> **Q6 — Strictness.** strict (2 independent sources + 1 passing check), standard, or light? ➡️ Recommend strict: everything in this subject is executable, so there is no excuse for a scale that everything passes.
+> ❓ **Q6 — Strictness.** strict (2 independent sources + 1 passing check), standard, or light?
+>
+> ➡️ Recommend strict: everything in this subject is executable, so there is no excuse for a scale that everything passes.
 >
 > — Strict.
 >
-> **Q7 — Language and layout.** Pages in Russian with English terms on first appearance, default layout?
+> ❓ **Q7 — Language and layout.** Pages in Russian with English terms on first appearance, default layout?
 >
 > — Yes.
 
@@ -150,19 +162,29 @@ It notices phase 1 is done, reads the page you wrote, and asks about **that page
 
 > Your `useEffect` page cites the React docs twice — once from the reference and once from the learn guide. Under the rules from phase 1 those are two sources, so the page qualified as `verified`. They are not independent: the second retells the first.
 >
-> **Q1 — What independence means here.** ➡️ Recommend: in this subject **execution counts as the second source and a second document does not.** Two articles about `useEffect` are one source counted twice.
+> ❓ **Q1 — What independence means here.**
+>
+> ➡️ Recommend: in this subject **execution counts as the second source and a second document does not.** Two articles about `useEffect` are one source counted twice.
 >
 > — Yes, that is right.
 >
-> **Q2 — Which check types are attainable.** You produced one behavioral check. `formal` is unreachable here; `attested` is available if you pin quotations to versioned documentation. ➡️ Recommend `[behavioral, attested]`.
+> ❓ **Q2 — Which check types are attainable.** You produced one behavioral check. `formal` is unreachable here; `attested` is available if you pin quotations to versioned documentation.
 >
-> **Q3 — Where the format bent.** The everyday level worked for `useEffect`. Will it work for a page on JSX syntax? ➡️ Recommend the rule: syntax pages declare `levels_na.everyday` with a stated reason. A rule, not a loosened limit — "skip it when it is hard" erodes the format within a year.
+> ➡️ Recommend `[behavioral, attested]`.
 >
-> **Q4 — What counts as done.** The book-subject version was "derive the result on paper and solve three non-routine problems". The React version? ➡️ Recommend: "can write a custom hook with correct cleanup and explain, without looking, why the dependency array is not an optimisation."
+> ❓ **Q3 — Where the format bent.** The everyday level worked for `useEffect`. Will it work for a page on JSX syntax?
 >
-> **Q5 — Problem supply.** No problem sets exist. Author-written problems allowed, with the source field reading `author's own` and the answers pinned by tests.
+> ➡️ Recommend the rule: syntax pages declare `levels_na.everyday` with a stated reason. A rule, not a loosened limit — "skip it when it is hard" erodes the format within a year.
 >
-> **Q6 — What you are deliberately leaving out.** Anything you have already decided against? ➡️ Recommend recording the rejections with their reasoning, in `CLAUDE.md`. Without it the same idea returns every few months and gets re-argued from nothing.
+> ❓ **Q4 — What counts as done.** The book-subject version was "derive the result on paper and solve three non-routine problems". The React version?
+>
+> ➡️ Recommend: "can write a custom hook with correct cleanup and explain, without looking, why the dependency array is not an optimisation."
+>
+> ❓ **Q5 — Problem supply.** No problem sets exist. Author-written problems allowed, with the source field reading `author's own` and the answers pinned by tests.
+>
+> ❓ **Q6 — What you are deliberately leaving out.** Anything you have already decided against?
+>
+> ➡️ Recommend recording the rejections with their reasoning, in `CLAUDE.md`. Without it the same idea returns every few months and gets re-argued from nothing.
 
 Then `phase: complete`, and:
 

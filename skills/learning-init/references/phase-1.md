@@ -37,10 +37,18 @@ Some subjects are both: a physics track on a textbook plus current lab practice.
 The capability is a toggle, not an identity — turn it on if any load-bearing
 source is a book.
 
-➡️ Recommend: check their disk before asking. A folder of PDFs answers this
-question. If corpus is on, turn `sources.require_page` on; if live, turn
+**For a live subject there is a second half to this question: which version is
+the version of record?** It is rarely the one installed. A learner running 18.3
+who will write their next project on 19 should learn 19, with the places 18.3
+differs marked on the page — otherwise the base teaches something that will not
+exist in their next repository. Look at what is actually on their disk before
+asking; the gap between installed and current is the whole question.
+
+➡️ Recommend: check their disk before asking. A folder of PDFs answers the first
+half. If corpus is on, turn `sources.require_page` on; if live, turn
 `sources.require_version` on — an unversioned citation in a fast-moving field is
-a claim about nothing.
+a claim about nothing — and pin the *current* release as canonical unless they
+are maintaining something old on purpose.
 
 ## Q3 — The canon: who wins when two sources disagree
 
@@ -122,9 +130,20 @@ Offer three settings rather than asking for numbers:
 | **standard** | 2 | 0 | a subject with arbiters and little to execute |
 | **light** | 1 | 0 | exploratory reading, or a field with one authority |
 
-➡️ Recommend **strict** wherever anything at all is executable, and warn plainly
-about the failure mode of the others: a scale that everything passes measures
-nothing. If they pick light, say what they are giving up.
+**Ask this one last, and only after the preflight.** `strict` demands a passing
+check on every trusted page, so it is a promise about the machine, not about the
+learner's ambition. Recommending it where the test runner cannot start — no
+harness yet, a runtime too old, a toolchain not installed — produces a base where
+every page sits at `sourced` forever and the learner concludes the method is
+broken. It is not; the round was.
+
+➡️ Recommend **strict** where the checks demonstrably run — meaning you have seen
+the toolchain work, not inferred that it should. Where the subject is executable
+in principle but not yet here, say so plainly and offer the honest sequence:
+**standard now, build the harness as the first task, tighten to strict once a
+check has actually passed.** Record it in `CLAUDE.md` so the tightening is a
+scheduled step rather than something forgotten. And warn about the failure mode
+of the loose settings: a scale that everything passes measures nothing.
 
 ## Q7 — Language and layout
 

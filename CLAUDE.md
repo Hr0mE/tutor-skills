@@ -20,6 +20,7 @@ A Claude Code plugin: a personal tutor you assemble for your own subject — mat
 | `runtime/scripts/check_pages.py` | **The centre of the whole thing.** The only writer of `confidence`. 545 lines |
 | `runtime/scripts/_tutor.py` | Root resolution and domain-layer loading. Everything imports it |
 | `runtime/scripts/scaffold.py` | Lays out a project; generates the Makefile that points at the plugin |
+| `runtime/scripts/setup_venv.py` | Builds the project venv and **proves it by importing**. Stdlib only — it installs the dependency the core needs |
 | `runtime/scripts/{lint_wiki,audit_review,new_audit,reflow_md}.py` | Ported from math_learning, de-hardcoded, translated |
 | `runtime/capabilities/corpus/` | Optional: OCR, printed-page offsets, full-text search, catalogue |
 | `runtime/templates/` | Neutral page skeletons that `learning-init` specialises per subject |
@@ -50,7 +51,7 @@ Working tree clean; see `git log` for the reasoning behind each change.
 
 ## 4. What is left, in order
 
-**1. Walk phase 1 live.** The plugin is installed (see item 3), but the interview itself has still never run. It is the only untested surface, and the one where four holes were already found by paper analysis alone — a second subject will show the next ones. Requires an interactive session; it cannot be exercised from a script.
+**1. Answer phase 1.** The plugin is installed and the interview has now been *reached* once — a React deployment on 2026-09-04 got as far as putting the seven questions, and the three defects that surfaced on the way are folded in (§6). What has still never happened is the other half: the questions being answered, a domain layer written, a page produced. That remains the only untested surface, and it needs an interactive session; it cannot be exercised from a script.
 
 > Note for whoever runs it: `/plugin` is not exposed as a slash command in every environment. Where it is missing, `claude plugin marketplace add …` / `claude plugin install …` does the same thing, and newly installed skills only appear after a restart.
 
@@ -82,6 +83,18 @@ Each of these cost a round of argument. The reasoning matters more than the verd
 | Claude Code only in v1 | Multi-platform support for zero users; "Claude Code only" beats half-working Gemini |
 
 ## 6. Known limits and open questions
+
+### Found by the first live deployment (React, 2026-09-04)
+
+Three defects, all fixed, all of a kind that only a real machine produces:
+
+- **`make setup` was broken on half its paths.** `A && B || C` in the shell runs C when B fails, so a half-finished `uv` run fell through into the fallback and landed on top of it. Worse, on a Python whose `ensurepip` does not work — pyenv and some distribution builds — `python3 -m venv` fails *after* creating `.venv/bin/python`, leaving a directory that satisfies the Makefile's `test -x` and contains no pip. `make check` then failed with ModuleNotFoundError and the troubleshooting said "run make setup": a loop. Now `setup_venv.py`, which tries each route, verifies by importing, removes the wreckage, and names what to install.
+- **The round contradicted itself on strictness.** It recommended `strict` — which requires a passing check on every trusted page — while reporting in the same breath that no test harness existed and the runtime was too old to build one. Every page would have sat at `sourced` forever and the method would have looked broken. Q6 now runs *after* a preflight and recommends strict only where the toolchain has been seen to work, otherwise offering the honest sequence: standard now, harness first, tighten once a check has actually passed.
+- **A live subject has two source questions, not one.** Which version is the version of record is separate from corpus-or-live, and it is rarely the version installed. Folded into Q2.
+
+What the deployment did *right*, worth preserving as the pattern: it looked at the disk before asking anything, found an existing project on the subject, and counted hook usage to ground the first question in the learner's own code rather than in a topic list.
+
+### Standing
 
 - **The interview has been tested against exactly one subject.** Four gaps surfaced from that single comparison (the arbiter table, popular sources, deliberate exclusions, the draft banner). Assume more, and treat each pilot as a test of the question set rather than only of the method.
 - **`attested` is deliberately narrow**: whitespace normalised, case ignored, no fuzzy matching, page window ±1. Fuzzy matching over OCR would manufacture false attestations, which is worse than no check. If it starts producing false negatives on real material, widen the page window before touching the matching.

@@ -44,13 +44,20 @@ def verbatim(line: str) -> bool:
     On formulas specifically: a line that is entirely `$$…$$` is a DISPLAY
     formula and must keep its own line. Pulled into a paragraph it becomes an
     inline formula — that changes the meaning of the layout, not just its look.
+
+    Block-level HTML gets the same treatment, and for the same reason: `<details>`
+    and its `<summary>` are structure, not prose. Joining them still renders, but
+    it makes the source misread as a paragraph, and `make reflow-check` could then
+    never come back clean on any page that uses a collapsible block.
     """
     s = line.strip()
     display_math = len(s) > 4 and s.startswith("$$") and s.endswith("$$")
+    html_block = s.startswith("<") and s.endswith(">") and not s.startswith("<!--")
     return (not s
             or s.startswith("#")
             or s.startswith("|")
             or display_math
+            or html_block
             or HR_RE.match(line) is not None
             or COMMENT_RE.match(line) is not None)
 
