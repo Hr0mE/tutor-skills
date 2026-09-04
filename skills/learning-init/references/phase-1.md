@@ -9,7 +9,9 @@ subject's documentation. Half of Q2 and most of Q3 you can answer yourself.
 ## Q0 — Where the base goes
 
 `scaffold.py` takes the root as an argument, so the session's own directory is not
-automatically the right one. Look for empty candidates and name them.
+automatically the right one. Where the scan boundary allows it, look for empty
+candidates and name them; where it does not, ask outright and do not go looking —
+this question is the first place the boundary bites.
 
 The only thing this decides is where the learner will open Obsidian and run
 `make check` for the next year — which makes the folder name the base's name in

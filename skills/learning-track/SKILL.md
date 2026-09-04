@@ -29,6 +29,12 @@ line. This skill maintains both layers at once and that is the whole point:
 `/learning-init` — the core does not guess what a source or a check means in a
 subject it has not been told about.
 
+**`privacy.scan` in that file is binding on you too.** The learner set it once,
+before the interview; writing pages is not a reason to widen it. Where you need
+something outside the boundary, ask for it by name and say what for — do not go
+and look because it would have been convenient. Silently outgrowing a permission
+is worse than never having asked for one.
+
 ## The subordinates
 
 Dispatch these rather than doing the work inline. The isolation is not tidiness;

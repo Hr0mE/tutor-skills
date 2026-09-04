@@ -67,7 +67,7 @@ Not on the list, deliberately: migrating `math_learning`. It works, it is finish
 
 ## 4a. Releasing
 
-**Bump `version` in `.claude-plugin/plugin.json` and `marketplace.json` on every release that changes behaviour.** The plugin cache is keyed by version and `claude plugin update` compares that field, not the commit — so fixes published under an unchanged version reach nobody, and the only way out is uninstall-and-reinstall. Three commits of fixes shipped under `0.1.0` before this was noticed. Currently `0.2.0`.
+**Bump `version` in `.claude-plugin/plugin.json` and `marketplace.json` on every release that changes behaviour.** The plugin cache is keyed by version and `claude plugin update` compares that field, not the commit — so fixes published under an unchanged version reach nobody, and the only way out is uninstall-and-reinstall. Three commits of fixes shipped under `0.1.0` before this was noticed. Currently `0.3.0` — the scan-boundary gate changed behaviour, so it took a bump.
 
 ## 5. Settled — do not re-litigate
 
@@ -110,6 +110,16 @@ What it exposed:
 - **A locator must survive republication.** Page numbers do not cross editions and translations diverge on substance; where a canonical division exists (book/chapter/section), that is the citation and the page rides along. Folded into Q2.
 - **Nobody knew the round could be answered in one line.** The skill now states the "1–7, go with your recommendations" shortcut explicitly, with the corollary for whoever writes the recommendations: one you would not want accepted wholesale is not finished.
 - **No question asked where the base should live.** Added as Q0 — the folder name is the base's name in practice.
+
+### Raised by the learner after watching two deployments (2026-09-04)
+
+**The interview read whatever it liked.** Both runs went through the user's disk unasked — one read an unrelated React project and counted hook usage in it, the other walked the projects directory. Nothing in the skill said they should not; the instruction "never ask for anything you could look up" was written unconditional, and it was followed exactly as written.
+
+Fixed by a **consent gate before any reading**: a checkbox question with two axes — how far (this directory · named folders · the parent · nothing) and how deep (names · documents · code · git history) — asked after the orientation, so the learner knows what they are consenting for, and before any enumeration, since listing a parent directory to build the options is itself the scan. The answer lands in `privacy.scan` and binds `learning-track` in every later session, not just the interview.
+
+Three things this must not become: a scan silently widened later because it was convenient; a default that broadens when the question cannot be asked (it narrows); or a claim of enforcement. **It is a rule the agent follows, not a sandbox** — worth saying plainly, and true in the useful direction: everything in `runtime/` resolves paths from the project root and never reads outside it, so the tooling genuinely cannot wander, only the agent can.
+
+Q0 was the first casualty: "look for empty candidates and name them" is a scan, so it now defers to the boundary and asks outright when the boundary is narrow.
 
 ### Standing
 

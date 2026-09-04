@@ -96,27 +96,12 @@ finished. Write each one so that "go with it" is a decision you would defend.
 Number them. Keep each question to a decision that changes what gets built.
 Find facts yourself — read their existing notes, look at the books on disk, check
 what the documentation for their framework actually looks like. **Never ask the
-learner for anything you could look up.**
+learner for anything you could look up** *within the boundary they set below*.
+Outside it the rule inverts: ask, and say why you are asking rather than looking.
 
 Ground every question in their subject. "What is a source in your field?" is
 unanswerable; "You named Kolmogorov–Fomin and Zorich — when they state the same
 theorem differently, which one wins?" is answerable.
-
-## Before phase 1: preflight
-
-Check what the machine can actually do, and report it as part of the greeting.
-This is not ceremony — **the answers to Q6 depend on it**, and finding out later
-that the checks cannot run turns the trustworthiness scale into decoration.
-
-- `uv` present, or a `python3` whose `-m venv` can bootstrap pip. Without one of
-  the two, `make setup` cannot build the project's environment.
-- For a subject whose checks are executable: does its toolchain run *here*? A
-  test runner that needs Node 20 on a machine with Node 18 is a blocker for
-  `strict`, not a detail to mention in passing.
-- Whatever else the subject leans on — a compiler, a typechecker, Tesseract for a
-  book corpus.
-
-Report the blockers **before** asking Q6, and let them change the recommendation.
 
 ## Open with the orientation. Always.
 
@@ -130,6 +115,74 @@ Four parts. Adapt the wording to the subject; keep all four.
 4. **What happens now.** The questions, then the project gets laid out, then one page. **That page will come out `draft`, and that is correct, not a failure** — half the rules it would be judged against do not exist yet. The second round, the one that can only be asked after real material has pushed back, lifts the cap and re-scores everything.
 
 Then the preflight results, then the round.
+
+## Then ask what you may look at. Before looking.
+
+The interview is only good because it is grounded in what is actually on the
+machine — books on disk, an existing project in the subject, how the learner's
+other bases are laid out. That is also a stranger reading through someone's
+work. **They have to be asked, and asked before the reading, not after.**
+
+Put it as a structured multiple-choice question with checkboxes, not as prose —
+this is a gate, not a conversation, and it should cost one click.
+
+**Question 1, single choice — how far may I look?**
+
+| Option | Means |
+|---|---|
+| **This directory only** (recommend) | The folder the base will live in, and nothing above or beside it |
+| This directory plus folders I name | They list them; you touch nothing else |
+| My whole projects directory | Free run of the parent |
+| Nothing — ask me instead | You look at no files at all and ask for everything |
+
+**Question 2, multiple choice — what may I read inside them?**
+
+File and folder names only · contents of documents and notes · source code ·
+git history.
+
+**State the trade-off in the question itself.** Narrower means a longer round and
+more questions whose answers were sitting on the disk — the method still works,
+it just asks more. Left unsaid, a learner who restricts the scan reads the extra
+questions as the tool being poor.
+
+Three rules that make the gate real rather than decorative:
+
+- **Ask before enumerating.** Listing a parent directory to build the checkbox
+  options is itself the scan being consented to. Offer the choices generically;
+  only after they pick "folders I name" do you go and list anything.
+- **Default to the narrowest** whenever the question cannot be put — a
+  non-interactive run, no answer. Never widen by assumption.
+- **Record it in the domain layer** under `privacy.scan`, and honour it in later
+  sessions instead of re-asking or, worse, quietly forgetting. `learning-track`
+  reads the same field.
+
+And be exact about what this is: **a rule you follow, not a sandbox.** The
+tooling in `runtime/` never reads outside the project root — every path is
+resolved from it — but the boundary above governs *your* reading, and it holds
+because you hold it. Say so rather than implying an enforcement that does not
+exist.
+
+Note that Q0 of the round — where the base should live — depends on this answer.
+Under "this directory only" you cannot go looking for better-named empty
+candidates; ask instead.
+
+## Before phase 1: preflight
+
+Check what the machine can actually do, and report it with the greeting. This part
+needs no permission — it asks the machine what tools exist (`uv`, a runtime, a
+compiler, Tesseract), not the learner's files what they contain.
+This is not ceremony — **the answers to Q6 depend on it**, and finding out later
+that the checks cannot run turns the trustworthiness scale into decoration.
+
+- `uv` present, or a `python3` whose `-m venv` can bootstrap pip. Without one of
+  the two, `make setup` cannot build the project's environment.
+- For a subject whose checks are executable: does its toolchain run *here*? A
+  test runner that needs Node 20 on a machine with Node 18 is a blocker for
+  `strict`, not a detail to mention in passing.
+- Whatever else the subject leans on — a compiler, a typechecker, Tesseract for a
+  book corpus.
+
+Report the blockers **before** asking Q6, and let them change the recommendation.
 
 ## Phase 1
 

@@ -126,6 +126,18 @@ canon:
   popular_sources: >-
     Admitted into the everyday level only. Never outweigh the canon.
 
+# ── what may be read, and where ─────────────────────────────────────────
+# Set from the boundary question before the interview, and honoured by every
+# later session instead of being re-asked. A rule the agent follows, not a
+# sandbox: the scripts in runtime/ resolve every path from the project root and
+# never read outside it, but this field governs what the *agent* reads.
+privacy:
+  scan:
+    scope: project            # project | named | parent | none
+    allowed: []               # extra paths, when scope is `named`
+    denied: []                # explicit exclusions inside an allowed scope
+    read: [names, documents]  # names | documents | code | git-history
+
 audit:
   kinds: [statement, source, analogy, problem, hint, link, length, typo, other]
 
