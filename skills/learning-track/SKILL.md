@@ -11,7 +11,9 @@ description: >-
   building problems for a concept, (4) running verification and recomputing
   confidence, (5) working through audit/ notes. Requires a domain layer at
   .tutor/config.yaml — run learning-init first. Not for general note-taking or
-  answering one-off questions.
+  answering one-off questions. Write and speak in the base's own language, from
+  `language` in the domain layer — never default to English because the
+  instructions are in it.
 ---
 
 # learning-track

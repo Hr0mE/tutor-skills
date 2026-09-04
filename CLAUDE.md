@@ -129,6 +129,16 @@ With the scan gate in, the interview started running in English for a learner wh
 
 The general lesson, written into the gate itself: **what the boundary takes away is not lost facts but unasked questions.** Anything earlier versions inferred by reading around — layout habits, what the learner already owns, the language — has to become something asked, not something guessed. Expect more of these as the gate stays in.
 
+### Why 0.4.0 did not take effect, and what that exposed (2026-09-04)
+
+The run after the language fix still spoke English. It was on `0.3.0`: skills load at session start, so a session that *updates* the plugin keeps running the instructions it began with. The fix was correct and simply had not arrived — which is worth remembering whenever a change appears not to work: check which version was actually in the model's context, not which is on disk.
+
+What it exposed is real, though. **Almost everything the agent says happens before `learning-init` is ever invoked** — installing, reporting the preflight, announcing a blocker — and the skill body is not in context until then. A rule that lives only in the body governs none of that. The README covers the quick-start path and `INSTALL.md` covers whoever opens it; a session arriving by update had neither.
+
+The one place in context from the start of a session is a skill's **`description`**, so the language rule now sits there in both skills, terse, in addition to the body. Anything that must hold *before* invocation belongs there or nowhere.
+
+Also softened: a toolchain blocker is an **input to Q6, not a gate before the round**. The run halted to demand a Node decision from someone who had not yet been told what any of this was — putting the least interesting choice first and the orientation last. Only a blocker that stops the scaffold itself (no `uv`, no working `venv`) justifies stopping.
+
 ### Standing
 
 - **The interview has been tested against exactly one subject.** Four gaps surfaced from that single comparison (the arbiter table, popular sources, deliberate exclusions, the draft banner). Assume more, and treat each pilot as a test of the question set rather than only of the method.

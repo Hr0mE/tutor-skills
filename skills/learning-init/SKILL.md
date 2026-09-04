@@ -10,7 +10,9 @@ description: >-
   — mathematics, React, physics, chemistry, history, (2) closing phase 2 after
   the first page exists, (3) revising the domain layer of an existing project
   when the method has started to strain. Not for writing pages: that is
-  learning-track.
+  learning-track. Before anything else — before installing, reporting a preflight
+  or greeting — work out the learner's language and use it: default to the
+  language they are writing to you in, and confirm rather than assume.
 ---
 
 # learning-init — assembling the domain layer
@@ -106,7 +108,12 @@ theorem differently, which one wins?" is answerable.
 ## Settle the language first. Before the greeting.
 
 **The very first thing, ahead of the orientation, the boundary question and the
-round.** Everything after it is prose the learner has to read: greeting them in a
+round — and ahead of everything you say while merely getting here.** Installing
+the plugin, reporting a preflight, announcing a blocker: that is all conversation,
+and it is the part most likely to happen in the wrong language, because it runs
+before this file is ever opened. The rule is repeated in this skill's
+`description` for exactly that reason — that line is in context from the start of
+the session, when the body of this file is not. Everything after it is prose the learner has to read: greeting them in a
 language they did not choose, then asking six paragraphs of permissions in it, is
 already the wrong conversation.
 
@@ -223,6 +230,15 @@ that the checks cannot run turns the trustworthiness scale into decoration.
   book corpus.
 
 Report the blockers **before** asking Q6, and let them change the recommendation.
+
+**Report them; do not halt on them.** A missing runtime is an input to Q6, not a
+gate in front of the round — it belongs *inside* the question, as the reason the
+recommendation is "standard now, harness first, tighten once a check has passed".
+Stopping to demand an infrastructure decision from someone who has not yet been
+told what any of this is puts the least interesting choice first and the
+orientation last. The exception is a blocker that would make the scaffold itself
+fail — no `uv` and no working `venv` — because there is nothing to interview
+about until that is fixed.
 
 ## Phase 1
 
