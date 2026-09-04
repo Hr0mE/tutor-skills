@@ -1,0 +1,33 @@
+tutor-skills
+============
+
+Intellectual debts, stated plainly.
+
+## The knowledge-base pattern
+
+The idea of an agent *compiling* raw sources into a persistent, cross-linked wiki
+— rather than re-retrieving them per query — comes from Andrej Karpathy's
+llm-wiki Gist:
+
+    https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f
+
+The five-operation shape built on top of it (compile · ingest · query · lint ·
+audit), the raw/wiki/outputs directory layout, and the audit/ feedback channel
+with its anchor-window addressing come from the `llm-wiki` skill by Lewis Liu
+(lylewis@outlook.com).
+
+**This project does not vendor or redistribute that skill.** tutor-skills is an
+independent implementation of a different thing — a learning method — and it runs
+on top of any markdown wiki, with or without llm-wiki present. What is inherited
+is the idea, and the ancestry is recorded here because ideas have authors.
+
+The parts that are this project's own: the depth-level page format and the rule
+that an analogy must state where it breaks; the trustworthiness scale computed by
+machine from independent sources and typed checks; the tracks/ layer that argues
+for its own ordering; the approach exercises and hint ladder; and the two-phase
+domain-layer assembly.
+
+## Tooling
+
+Text extraction leans on Tesseract and Poppler when the corpus capability is in
+use; both are called as external programs and neither is redistributed here.

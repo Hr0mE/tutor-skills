@@ -1,0 +1,135 @@
+---
+name: learning-init
+description: >-
+  Interview the learner and assemble the domain layer of a personal-tutor
+  knowledge base — the arbiters, what counts as a source, what a check is, how
+  many independent sources buy `verified`, and what "done" means in this
+  subject. Runs in two phases with a real page written in between, because the
+  answers about verification and canon are guesswork until the method has hit
+  actual material. Use when (1) starting a new learning project on any subject
+  — mathematics, React, physics, chemistry, history, (2) closing phase 2 after
+  the first page exists, (3) revising the domain layer of an existing project
+  when the method has started to strain. Not for writing pages: that is
+  learning-track.
+---
+
+# learning-init — assembling the domain layer
+
+The core of this plugin is subject-neutral. It knows *how to teach*: depth
+levels on one page, a trustworthiness tag no human may write, a route that
+explains its own order, problems with a hint ladder, an audit channel.
+
+It does **not** know your subject. It does not know whether "two independent
+sources" means two independent proofs, two primary documents, or documentation
+plus a passing test. It does not know whether an everyday analogy is possible
+for your material. Those answers are the **domain layer**, and this skill
+produces them by interviewing the learner.
+
+## The two phases, and why the split is where it is
+
+**The split is not "few questions then more questions". It is: phase 1 asks what
+can be known before touching the material; phase 2 asks what only the material
+can tell you.**
+
+A learner asked up front "what counts as an independent source in your field?"
+will give a plausible answer and it will be wrong. The real answer arrives the
+first time they try to cite something and the rule does not fit. In the reference
+project the discovery was that the main problem set starts at problem 18 and has
+nothing at all on the axioms it opens with — a fact no interview could have
+produced, and one that changed where problems come from.
+
+```
+/learning-init  →  phase 1 interview  →  scaffold + config(phase: 1)
+                                              ↓
+                              learning-track writes ONE page
+                                              ↓
+/learning-init  →  phase 2 interview  →  config(phase: complete)
+                                              ↓
+                                 make check — recomputes every page
+```
+
+**Pages written during phase 1 are capped at `draft`** by `check_pages.py`, whatever
+their sources and checks say. Their tag is unearned by construction: the rules it
+would be measured against did not exist yet. Closing phase 2 lifts the cap and
+recomputes them for real. Say this to the learner when the first page comes out
+`draft` — otherwise it reads as a failure.
+
+## How to interview
+
+Not a form. A design tree worked in **rounds**: ask everything whose prerequisites
+are settled, then wait. The technique that makes this bearable:
+
+**Put a recommended answer under every question.** It turns an interrogation into
+a conversation — "go with your recommendations" is a cheap answer, and the learner
+can object to exactly the one that is wrong for them. A question with no
+recommendation is work you have pushed onto the person you are supposed to be
+helping.
+
+Number them. Keep each question to a decision that changes what gets built.
+Find facts yourself — read their existing notes, look at the books on disk, check
+what the documentation for their framework actually looks like. **Never ask the
+learner for anything you could look up.**
+
+Ground every question in their subject. "What is a source in your field?" is
+unanswerable; "You named Kolmogorov–Fomin and Zorich — when they state the same
+theorem differently, which one wins?" is answerable.
+
+## Phase 1
+
+Read `references/phase-1.md` for the full question set with recommended answers.
+Six areas: subject and goal · corpus or live sources · depth levels · where
+problems come from · strictness · language and layout.
+
+Output of phase 1:
+
+1. `scaffold.py <root> "<Subject>" [--corpus]` — the tree, the Makefile pointing
+   at the plugin runtime, the neutral templates.
+2. `.tutor/config.yaml` with `phase: 1` — see `references/domain-layer.md`.
+3. `CLAUDE.md` — the prose half of the schema, filled in from the interview.
+4. `templates/concept.md` — the neutral template **specialised for this subject**:
+   level names in the subject's own vocabulary, the problem roles as they read
+   here, the "what breaks if you drop a condition" table renamed if the subject
+   calls it something else.
+
+Then hand off: "Now write one page — `learning-track` on the concept you would
+start with. It will come out `draft`; that is correct."
+
+## Phase 2
+
+Read `references/phase-2.md`. Runs only after at least one real page exists, and
+the questions are drawn **from that page**, not from a list. Five areas:
+independence · attainable check types · where the format bent · closure
+criterion · problem supply.
+
+Open phase 2 by reading the page that was written and naming what went wrong in
+it. That is the material the whole phase is about.
+
+Output of phase 2:
+
+1. `.tutor/config.yaml` updated, `phase: complete`.
+2. `make check` — every page recomputed with the cap lifted. Show the diff in
+   tags and say plainly which pages did not earn what they were provisionally
+   given.
+
+## Revising an existing domain layer
+
+The domain layer is **hand-editable on purpose** — it is the learner's judgement
+about their own field, unlike `confidence`, which is a machine conclusion. When
+they edit it or ask you to, the rule is:
+
+**A change to the thresholds is a migration.** Raise `min_independent_sources`
+in June and every page tagged `verified` in March is now wearing a tag it does
+not deserve. Always run `make check` straight after, always show what dropped,
+never let the change land silently.
+
+## The five types of check are fixed
+
+`formal` · `behavioral` · `illustrative` · `attested` · `contested`. A domain
+declares which of them it can **attain**; it never invents a sixth. If a subject
+seems to need one, that is a finding about the core worth reporting, not a
+config value to make up.
+
+The one to reach for in fields with nothing to execute is **`attested`**: it
+verifies not that the claim is true but that the source was not misquoted —
+the only thing a machine can honestly certify about a documentary claim, and
+enough to keep the scale alive in history, law, or medicine.

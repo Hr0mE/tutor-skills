@@ -1,0 +1,17 @@
+{
+  "name": "tutor-skills",
+  "owner": {
+    "name": "Dmitry Lyapin"
+  },
+  "metadata": {
+    "description": "A personal tutor you assemble for your own subject.",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "tutor-skills",
+      "source": "./",
+      "description": "Build a personal-tutor knowledge base on any subject — mathematics, React, physics, chemistry, history. Interview-driven domain layer, depth levels in one page, machine-written trustworthiness, problems with an approach ladder."
+    }
+  ]
+}
