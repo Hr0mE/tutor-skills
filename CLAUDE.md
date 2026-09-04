@@ -139,6 +139,16 @@ The one place in context from the start of a session is a skill's **`description
 
 Also softened: a toolchain blocker is an **input to Q6, not a gate before the round**. The run halted to demand a Node decision from someone who had not yet been told what any of this was — putting the least interesting choice first and the orientation last. Only a blocker that stops the scaffold itself (no `uv`, no working `venv`) justifies stopping.
 
+### An inference dressed as an observation (2026-09-04)
+
+The language question shipped an option reading *"your global instructions and your other projects are written in Russian, so this looks like your working language."* The learner asked, reasonably, whether their projects had been read.
+
+They had not. The session's transcript shows eight commands: `pwd` and `ls` in its own empty directory, `~/.claude/plugins`, `~/.claude/skills`, the plugin cache, and version probes. No path under the learner's projects directory was touched. **The boundary held.** The Russian came from two legitimate places — `~/.claude/CLAUDE.md`, which the harness loads into every session and which contains Cyrillic, and the working directory's own path.
+
+The defect is the sentence, not the behaviour: *"your other projects are written in Russian"* was extrapolated from a path name and stated as fact. **This is worse for trust than an actual violation**, because the learner's only evidence is the claim itself, and the claim says they were read. A gate nobody can verify is worth little; a gate whose agent misreports its own reach is worth less than none.
+
+Hence the rule now standing above the language question: **say where you got it, every time.** Auto-loaded context is named as such, something read is named as read and had to be inside the boundary, and a guess is marked a guess. A claim you cannot attribute is one to drop and ask about instead.
+
 ### Standing
 
 - **The interview has been tested against exactly one subject.** Four gaps surfaced from that single comparison (the arbiter table, popular sources, deliberate exclusions, the draft banner). Assume more, and treat each pilot as a test of the question set rather than only of the method.
