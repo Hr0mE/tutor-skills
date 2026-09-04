@@ -36,7 +36,7 @@ A Claude Code plugin: a personal tutor you assemble for your own subject — mat
 
 ## 3. State
 
-Two commits, working tree clean.
+Working tree clean; see `git log` for the reasoning behind each change.
 
 **Verified by running, not by reading:**
 
@@ -50,11 +50,13 @@ Two commits, working tree clean.
 
 ## 4. What is left, in order
 
-**1. Install the plugin and walk phase 1 live.** Requires an interactive session; cannot be done from a script. This is the only untested surface, and it is the surface where four holes were already found by paper analysis alone — a second subject will show the next ones. `/plugin marketplace add /home/dmitry/Проекты/tutor-skills` then `/plugin install tutor-skills@tutor-skills`.
+**1. Walk phase 1 live.** The plugin is installed (see item 3), but the interview itself has still never run. It is the only untested surface, and the one where four holes were already found by paper analysis alone — a second subject will show the next ones. Requires an interactive session; it cannot be exercised from a script.
+
+> Note for whoever runs it: `/plugin` is not exposed as a slash command in every environment. Where it is missing, `claude plugin marketplace add …` / `claude plugin install …` does the same thing, and newly installed skills only appear after a restart.
 
 **2. The React pilot.** A real project on the subject the whole thing was started for. Expect the domain layer to want fields that do not exist yet; that is the point of a pilot, and each one is a finding to bring back here.
 
-**3. Publish to GitHub.** `plugin.json` currently carries a **guessed** homepage — `github.com/dmitrylyapin/tutor-skills`. Fix it before the first push, and update `docs/INSTALL.md`, which repeats the same path in its install command. Publication is an outward-facing action: do it on explicit instruction, not as a side effect.
+**3. ~~Publish to GitHub.~~ Done, 2026-09-04** — `Hr0mE/tutor-skills`, public, plugin installed from it at commit `12785b9`. A guessed owner (`dmitrylyapin`) had been left in `plugin.json` and `docs/INSTALL.md`; both corrected afterwards. **The account is `Hr0mE`** — do not re-guess it.
 
 **4. Write to Lewis Liu** (`lylewis@outlook.com`), author of the `llm-wiki` skill. Courtesy, not a blocker — `NOTICE` already records the debt and no file of his is redistributed.
 
