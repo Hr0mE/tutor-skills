@@ -103,11 +103,45 @@ Ground every question in their subject. "What is a source in your field?" is
 unanswerable; "You named Kolmogorov–Fomin and Zorich — when they state the same
 theorem differently, which one wins?" is answerable.
 
+## Settle the language first. Before the greeting.
+
+**The very first thing, ahead of the orientation, the boundary question and the
+round.** Everything after it is prose the learner has to read: greeting them in a
+language they did not choose, then asking six paragraphs of permissions in it, is
+already the wrong conversation.
+
+**The answer is almost always in front of you: the language they are writing to
+you in.** Use that as the default. It costs no permission and needs no disk —
+which matters, because the signal this replaces *was* on the disk. Earlier
+versions inferred the language from the learner's existing pages; once the scan
+boundary closed that off, the interview fell back to English for people who had
+been writing in Russian the whole time. The conversation was the better source all
+along.
+
+Confirm it, do not assume it — a learner may write to you in one language and want
+their base in another, and that is common for a subject whose literature is
+English. One structured question, the detected language first:
+
+| Option | |
+|---|---|
+| **<the language they are writing in>** (recommend) | Everything — this interview, the pages, the problems |
+| English | |
+| Another language | They name it |
+| Different for interview and pages | e.g. talk in one, write pages in the other |
+
+Then **switch immediately** and conduct the rest — orientation, boundary
+question, the whole round, and the pages afterwards — in that language. Record it
+as `language` in the domain layer.
+
+What does **not** change: the skills' own instructions, this file included, stay
+English, and so do the field names in `.tutor/config.yaml`. The output language is
+a parameter of the base, not a translation of the machinery.
+
 ## Open with the orientation. Always.
 
 **Before the first question, every time — not only when you have just installed the plugin.** The learner may arrive by any route: a fresh install, an update, a second session, a project someone else set up. If the orientation lives only in the deployment instructions it fires on exactly one of those paths, and on the others the person meets seven questions with no idea what they are for.
 
-Four parts. Adapt the wording to the subject; keep all four.
+Four parts, **in the language settled above**. Adapt the wording to the subject; keep all four.
 
 1. **What is installed and reachable** — the two skills, the version, and that skills appear only after a session restart.
 2. **What this is.** Not a notes folder and not a summariser. A base with two layers: atomic concept pages, each carrying every depth level in one file, and route pages that argue for the order they put those concepts in. Problems come with approach exercises and a collapsed hint ladder; solutions live apart so you cannot peek. How much of it is trustworthy is decided by a script — `make check` owns that tag, and it measures whether checks exist, not how confident anyone felt.
@@ -144,6 +178,12 @@ git history.
 more questions whose answers were sitting on the disk — the method still works,
 it just asks more. Left unsaid, a learner who restricts the scan reads the extra
 questions as the tool being poor.
+
+**Notice what the boundary takes away, and replace it by asking.** Plenty of what
+earlier versions inferred — the language, how the learner lays a base out, what
+they already own — came from reading their other work. Cut off, those are not lost
+facts but unasked questions. Ask them; do not treat a narrow boundary as
+permission to guess.
 
 Three rules that make the gate real rather than decorative:
 

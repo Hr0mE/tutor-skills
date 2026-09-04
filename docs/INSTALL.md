@@ -60,7 +60,9 @@ Then:
 
 ## 4. Phase 1 — seven questions
 
-You will get one round of numbered questions, each with a recommended answer. Answering "go with your recommendations" is a legitimate reply; object only where the recommendation is wrong for you.
+Before the round, two things happen that are not questions about your subject. You are asked **which language to work in** — the default is whatever you have been writing in — and **how far you are willing to let the agent look around your disk**, as a checkbox question. Grounding the interview in what is actually on your machine makes it much shorter; declining is a legitimate answer, and the cost is simply that more gets asked out loud.
+
+Then the round: numbered questions, each with a recommended answer. **"1–7, go with your recommendations" is a complete answer** — object only where one is wrong for you.
 
 An abridged real exchange:
 
@@ -100,7 +102,9 @@ An abridged real exchange:
 >
 > — Strict.
 >
-> ❓ **Q7 — Language and layout.** Pages in Russian with English terms on first appearance, default layout?
+> ❓ **Q7 — Terminology and layout.** Should terms carry their original form on first appearance — `useEffect`, *reconciliation* — and is the default layout fine?
+>
+> ➡️ Recommend yes: everything worth reading next is under the original spelling, and a term you cannot type into a search box is a dead end.
 >
 > — Yes.
 

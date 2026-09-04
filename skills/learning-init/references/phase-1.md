@@ -201,20 +201,25 @@ check has actually passed.** Record it in `CLAUDE.md` so the tightening is a
 scheduled step rather than something forgotten. And warn about the failure mode
 of the loose settings: a scale that everything passes measures nothing.
 
-## Q7 — Language and layout
+## Q7 — Terminology and layout
 
-Output language (the core's instructions are English; pages are written in
-whatever the learner reads in). Whether terms get their English original on first
-appearance — recommend yes for any subject whose live literature is in English,
-which is nearly all of them.
+The language itself was settled before this round began — by then you were already
+conducting the interview in it. What is left is narrower and genuinely open.
+
+**Do terms carry their original form on first appearance?** Not a translation
+question: a base written in Russian that never shows *Völkerwanderung*, `useEffect`
+or *translatio imperii* leaves the learner unable to search, and everything worth
+reading next is under the original spelling. The cost is a page that stutters, so
+it is a real trade rather than an obvious yes.
 
 Then the layout: default is `wiki/concepts`, `wiki/tracks`, `outputs/solutions`,
 `checks/`, `audit/`. Change only on a real reason.
 
-➡️ Recommend: their language for pages, English terms in parentheses on first
-appearance, default layout. And the line-break convention — one paragraph, one
-line — if they read in Obsidian, because Live Preview shows a source wrap as a
-real break mid-sentence.
+➡️ Recommend: original form in parentheses at first appearance — for terms, key
+names, and anything they will have to type into a search box — and the default
+layout. Plus the line-break convention, one paragraph one line, if they read in
+Obsidian: Live Preview is an editor and shows a source wrap as a real break
+mid-sentence.
 
 ---
 

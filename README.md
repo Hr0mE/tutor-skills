@@ -28,11 +28,13 @@ claude plugin install tutor-skills@tutor-skills
 
 **To update an existing install**, prefer `claude plugin update tutor-skills@tutor-skills`; if it reports "already the latest version" while the repository has moved, uninstall and install again. The updater compares the `version` field, so a release published without a version bump is invisible to it.
 
-**2. Preflight.** Check what this machine can actually do, because the answers depend on it, not the other way round: `uv`, or a `python3` whose `-m venv` can bootstrap pip; and the subject's own toolchain — a test runner, a compiler, Tesseract for a book corpus. **Report blockers before the interview, not after.** A strictness setting that assumes checks can run, on a machine where they cannot, produces a base where every page sits at `sourced` forever.
+**2. Settle the language before saying anything else.** Default to the language the learner is writing to you in — that signal is in the conversation and needs no permission — and confirm it with one structured question rather than assuming. Everything after it, greeting included, happens in that language. This matters more since the scan boundary went in: the language used to be inferred from the learner's existing pages, and once that reading stopped, English became the accidental default for people who had never written a word of it here.
 
-**3. Ask what you may look at, then look.** Grounding the interview in what is on the machine is also a stranger reading someone's work, so the boundary is set first — a checkbox question, one click, before any enumeration. Inside it, never ask for what you could find yourself; outside it, ask and say why. `/learning-init` carries the exact wording and records the answer in the domain layer, where every later session is bound by it.
+**3. Preflight.** Check what this machine can actually do, because the answers depend on it, not the other way round: `uv`, or a `python3` whose `-m venv` can bootstrap pip; and the subject's own toolchain — a test runner, a compiler, Tesseract for a book corpus. **Report blockers before the interview, not after.** A strictness setting that assumes checks can run, on a machine where they cannot, produces a base where every page sits at `sourced` forever.
 
-**4. Hand off to `/learning-init`.** It opens with the orientation itself — what is installed, what this is, what they can do with it, what happens next — so do not write your own version here; the canonical text is in the skill and one copy is enough to keep them from drifting apart.
+**4. Ask what you may look at, then look.** Grounding the interview in what is on the machine is also a stranger reading someone's work, so the boundary is set first — a checkbox question, one click, before any enumeration. Inside it, never ask for what you could find yourself; outside it, ask and say why. `/learning-init` carries the exact wording and records the answer in the domain layer, where every later session is bound by it.
+
+**5. Hand off to `/learning-init`.** It opens with the orientation itself — what is installed, what this is, what they can do with it, what happens next — so do not write your own version here; the canonical text is in the skill and one copy is enough to keep them from drifting apart.
 
 ---
 

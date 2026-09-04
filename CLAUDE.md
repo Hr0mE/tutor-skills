@@ -121,6 +121,14 @@ Three things this must not become: a scan silently widened later because it was 
 
 Q0 was the first casualty: "look for empty candidates and name them" is a scan, so it now defers to the boundary and asks outright when the boundary is narrow.
 
+### The boundary's first side effect (2026-09-04, same day)
+
+With the scan gate in, the interview started running in English for a learner who had written nothing but Russian all session. Nothing was broken — the language had simply never been an explicit question. Earlier runs inferred it from the pages in the learner's other bases, and cutting off the reading removed the inference without replacing it.
+
+**Language is now the first step, ahead of the greeting**, defaulting to the language the learner is writing in — a signal that sits in the conversation and costs no permission, and which was the better source even when the disk was readable. `Q7` keeps only what remains genuinely open: whether terms carry their original form on first appearance, and the layout.
+
+The general lesson, written into the gate itself: **what the boundary takes away is not lost facts but unasked questions.** Anything earlier versions inferred by reading around — layout habits, what the learner already owns, the language — has to become something asked, not something guessed. Expect more of these as the gate stays in.
+
 ### Standing
 
 - **The interview has been tested against exactly one subject.** Four gaps surfaced from that single comparison (the arbiter table, popular sources, deliberate exclusions, the draft banner). Assume more, and treat each pilot as a test of the question set rather than only of the method.
