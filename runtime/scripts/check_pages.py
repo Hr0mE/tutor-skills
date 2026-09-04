@@ -47,6 +47,15 @@ from _tutor import cfg, load_config, project_root  # noqa: E402
 FM_RE = re.compile(r"\A---\n(.*?)\n---\n(.*)\Z", re.S)
 CHECK_RE = re.compile(r"<!--\s*check:([A-Za-z0-9_-]+)\s+(.+?)\s*-->")
 
+# The draft banner is owned by this script, like the tag it represents. Hiding a
+# draft behind a frontmatter field means hiding from the learner where the base
+# is thin — and the frontmatter is exactly what nobody reads.
+BANNER_MARK = "<!-- tutor:draft-banner -->"
+BANNER_RE = re.compile(rf"^{re.escape(BANNER_MARK)}\n(?:>.*\n)+\n?", re.M)
+DEFAULT_BANNER = ("> [!warning] Draft — read with suspicion\n"
+                  "> This page has not earned a trustworthiness tag yet. "
+                  "Statements on it may be wrong, unsourced, or both.")
+
 # The five types. Fixed in the core: a domain may declare which of them it can
 # attain, never invent a sixth.
 TYPES = {
@@ -92,16 +101,15 @@ class Runners:
         self.root = root
         self.decl = cfg(config, "runners", {}) or {}
         self._dir_cache: dict[str, dict] = {}
-        self._corpus = None
 
     def type_of(self, name: str) -> str | None:
         if name == "attested":
             return "attested"
         return (self.decl.get(name) or {}).get("type")
 
-    def run(self, name: str, arg: str) -> tuple[bool, str]:
+    def run(self, name: str, arg: str, fm: dict | None = None) -> tuple[bool, str]:
         if name == "attested":
-            return self._attested(arg)
+            return self._attested(arg, fm or {})
         d = self.decl.get(name)
         if d is None:
             return False, (f"runner `{name}` is not declared in .tutor/config.yaml — "
@@ -171,44 +179,78 @@ class Runners:
 
     # -- built-in: attestation ---------------------------------------------
 
-    def _attested(self, arg: str) -> tuple[bool, str]:
-        """`check:attested <source-index> "quoted text"` — verify the cited page
-        really carries the quoted words.
+    def _attested(self, arg: str, fm: dict) -> tuple[bool, str]:
+        """`check:attested <source-index> "quoted text"` — verify that the CITED
+        source really carries the quoted words, on the cited page.
 
-        This is the check that makes the scale work in fields where nothing is
-        executable. It does not certify that the claim is TRUE; it certifies
-        that the source was not misquoted — which is the only thing a machine
-        can honestly certify about a historical or documentary claim.
+        This is the check that keeps the scale alive in fields where nothing is
+        executable. It does not certify that the claim is TRUE; it certifies that
+        the source was not misquoted — the only thing a machine can honestly
+        certify about a documentary claim.
 
-        Requires the corpus capability (a text index of the sources).
+        The source index is not decoration. Searching the whole library instead
+        would attest that the words exist *somewhere*, which says nothing about
+        the citation — and would pass on a book the page never cited.
         """
         m = re.match(r'^(\d+)\s+"(.+)"$', arg.strip())
         if not m:
             return False, 'markup must be: check:attested <source-index> "quoted text"'
         idx, quote = int(m.group(1)), m.group(2)
-        if self._corpus is None:
-            sys.path.insert(0, str(Path(__file__).resolve().parent.parent
-                                   / "capabilities" / "corpus"))
-            try:
-                import find_in_book  # type: ignore
-                self._corpus = find_in_book
-            except Exception as e:
-                return False, f"corpus capability unavailable ({e}) — attestation needs it"
-        return self._corpus_lookup(idx, quote)
 
-    def _corpus_lookup(self, idx: int, quote: str) -> tuple[bool, str]:
-        # Deliberately narrow: normalise whitespace, ignore case, no fuzzy match.
-        # OCR mangles indices and Greek letters, so a fuzzy match here would
-        # manufacture false attestations — worse than no check at all.
+        srcs = fm.get("sources") or []
+        if idx >= len(srcs) or not isinstance(srcs[idx], dict):
+            return False, (f"source index {idx} does not exist on this page "
+                           f"({len(srcs)} source(s) listed)")
+        src = srcs[idx]
+        name = str(src.get("source", src.get("book", "")))
+        stem = Path(name).stem
+        txt = self.root / "raw" / "books" / ".ocr" / f"{stem}.txt"
+        if not txt.exists():
+            return False, f"no text index for {name} — run `make ocr`"
+
         needle = re.sub(r"\s+", " ", quote).strip().lower()
-        ocr_dir = self.root / "raw" / "books" / ".ocr"
-        if not ocr_dir.exists():
-            return False, "no text index at raw/books/.ocr — run `make ocr`"
-        for txt in sorted(ocr_dir.glob("*.txt")):
+        page = src.get("page")
+        pages = self._pages_of(txt, stem, page)
+        if pages is None:                       # offset unknown: whole book, and say so
             hay = re.sub(r"\s+", " ", txt.read_text(encoding="utf-8", errors="ignore")).lower()
             if needle in hay:
-                return True, f"found verbatim in {txt.stem}"
-        return False, "quotation not found in the corpus text index"
+                return True, f"found in {stem}, but the printed-page offset is unknown"
+            return False, f"not found anywhere in {stem}"
+        for pdf_page, text in pages:
+            hay = re.sub(r"\s+", " ", text).lower()
+            if needle in hay:
+                return True, f"found on p. {page} of {stem} (pdf p. {pdf_page})"
+        return False, (f"not found on p. {page} of {stem} — the wording, the page "
+                       f"number, or both are wrong")
+
+    def _pages_of(self, txt: Path, stem: str, printed):
+        """Pages of the index whose printed number is the cited one (±1).
+
+        The ±1 is not slack in the offset: a statement routinely straddles a page
+        break, and the citation names where it starts. Wider than that and the
+        check stops testing the page number at all.
+
+        Deliberately narrow otherwise: whitespace normalised, case ignored, no
+        fuzzy matching. Fuzzy matching over OCR would manufacture false
+        attestations, which is worse than having no check.
+        """
+        if printed is None:
+            return None
+        sys.path.insert(0, str(Path(__file__).resolve().parent.parent
+                               / "capabilities" / "corpus"))
+        try:
+            import find_in_book as fib  # type: ignore
+        except Exception:
+            return None
+        to_printed = fib.offset_fn(stem)
+        if to_printed is None:
+            return None
+        out = []
+        for pdf_page, text in fib.pages_of(txt):
+            got = to_printed(pdf_page)
+            if got is not None and abs(got - int(printed)) <= 1:
+                out.append((pdf_page, text))
+        return out or []
 
 
 # ─────────────────────────── page checking ───────────────────────────
@@ -264,7 +306,7 @@ def check_page(path: Path, root: Path, config: dict, runners: Runners,
     check_contested(fm, body, pats, rep)
 
     # ── checks ──
-    run_checks(body, config, runners, rep)
+    run_checks(body, fm, config, runners, rep)
 
     # ── confidence ──
     compute_confidence(fm, config, rep)
@@ -355,7 +397,8 @@ def check_contested(fm: dict, body: str, pats: dict, rep: Report) -> None:
                           "of the page.")
 
 
-def run_checks(body: str, config: dict, runners: Runners, rep: Report) -> None:
+def run_checks(body: str, fm: dict, config: dict, runners: Runners,
+               rep: Report) -> None:
     attainable = set(cfg(config, "confidence.attainable_types", list(TYPES)) or [])
     seen = set()
     for name, arg in CHECK_RE.findall(body):
@@ -373,7 +416,7 @@ def run_checks(body: str, config: dict, runners: Runners, rep: Report) -> None:
         if typ not in attainable:
             rep.warnings.append(f"runner `{name}` is type `{typ}`, which this domain declared "
                                 f"unattainable — either the domain layer is wrong or the check is")
-        ok, msg = runners.run(name, arg)
+        ok, msg = runners.run(name, arg, fm)
         rep.checks.append(f"{name}:{arg} — {'passed' if ok else 'FAILED'} ({msg}) [{typ}]")
         rep.n_passed += ok
         rep.n_failed += not ok
@@ -403,19 +446,44 @@ def compute_confidence(fm: dict, config: dict, rep: Report) -> None:
         rep.confidence = "draft"
 
 
-def write_back(path: Path, rep: Report) -> bool:
+def apply_banner(body: str, is_draft: bool, banner: str) -> str:
+    """Put the draft banner on the page, or take it off.
+
+    Drafts are shown, not hidden — but with a visible banner rather than a
+    frontmatter field alone. A tag nobody reads is not a warning, and concealing
+    which pages are thin is concealing where the base needs work.
+
+    Owned by this script for the same reason the tag is: anything a human can
+    edit by hand drifts out of agreement with the checks.
+    """
+    body = BANNER_RE.sub("", body)
+    if not is_draft:
+        return body
+    block = f"{BANNER_MARK}\n{banner}\n\n"
+    m = re.search(r"^#\s+.*\n+", body, re.M)
+    if m:
+        return body[:m.end()] + block + body[m.end():]
+    return block + body.lstrip("\n")
+
+
+def write_back(path: Path, rep: Report, config: dict) -> bool:
     raw = path.read_text(encoding="utf-8")
     m = FM_RE.match(raw)
     if not m:
         return False
     fm = yaml.safe_load(m.group(1)) or {}
     new_checks = list(dict.fromkeys(rep.checks)) or ["n/a — not formalisable"]
-    if fm.get("confidence") == rep.confidence and fm.get("checks") == new_checks:
+    banner = cfg(config, "rules.draft_banner", DEFAULT_BANNER)
+    body = apply_banner(m.group(2), rep.confidence == "draft", banner)
+    unchanged = (fm.get("confidence") == rep.confidence
+                 and fm.get("checks") == new_checks
+                 and body == m.group(2))
+    if unchanged:
         return False
     fm["confidence"] = rep.confidence
     fm["checks"] = new_checks
     dumped = yaml.safe_dump(fm, allow_unicode=True, sort_keys=False, width=100)
-    path.write_text(f"---\n{dumped}---\n{m.group(2)}", encoding="utf-8")
+    path.write_text(f"---\n{dumped}---\n{body}", encoding="utf-8")
     return True
 
 
@@ -464,7 +532,7 @@ def main() -> int:
             print(f"     · {c}")
         if rep.n_sources:
             print(f"     ⤷ sources: {rep.n_sources}, independent: {rep.n_independent}")
-        if not a.dry_run and write_back(path, rep):
+        if not a.dry_run and write_back(path, rep, config):
             print("     ✎ frontmatter updated")
 
     print("\nTotals:", " · ".join(f"{k}: {v}" for k, v in sorted(tally.items())))

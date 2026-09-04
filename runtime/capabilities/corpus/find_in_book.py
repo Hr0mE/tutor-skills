@@ -31,7 +31,9 @@ from _tutor import project_root  # noqa: E402
 ROOT = project_root()
 OCRDIR = ROOT / "raw" / "books" / ".ocr"
 BOOKS_INDEX = ROOT / "raw" / "books" / "index.md"
-PAGE_RE = re.compile(r"^===== PDF-PAGE (\d+) =====$", re.M)
+# Written as PDF-PAGE; PDF-СТРАНИЦА is accepted too, so an index built by an
+# earlier version keeps working instead of silently yielding no pages.
+PAGE_RE = re.compile(r"^===== PDF-(?:PAGE|СТРАНИЦА) (\d+) =====$", re.M)
 
 
 def canon_slugs() -> set[str]:

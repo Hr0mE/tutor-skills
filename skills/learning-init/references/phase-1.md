@@ -1,8 +1,8 @@
 # Phase 1 — what can be known before touching the material
 
-Six questions. Ask them in one round, each with a recommended answer. Before you
+Seven questions. Ask them in one round, each with a recommended answer. Before you
 ask, **look**: at the learner's disk, their existing notes, the shape of their
-subject's documentation. Half of Q2 and most of Q6 you can answer yourself.
+subject's documentation. Half of Q2 and most of Q3 you can answer yourself.
 
 ---
 
@@ -42,7 +42,34 @@ question. If corpus is on, turn `sources.require_page` on; if live, turn
 `sources.require_version` on — an unversioned citation in a fast-moving field is
 a claim about nothing.
 
-## Q3 — Depth levels
+## Q3 — The canon: who wins when two sources disagree
+
+The single most consulted part of a learning base, and the one people forget to
+decide until it is needed at an awkward moment. For each area of the subject:
+**which work arbitrates?**
+
+Ask it area by area, not once. A subject rarely has one authority — in the
+reference project a real-analysis text arbitrates compactness in Rⁿ, a functional
+analysis text arbitrates metric spaces, and a complex analysis text arbitrates
+normal families. Each is wrong outside its area.
+
+Then two follow-ons:
+
+- **Problem sets.** Which one is primary, and which supplies the warm-ups when
+  the primary starts above the learner's head? These are usually different books.
+- **Popular sources** — videos, blog posts, explainers. They are genuinely useful
+  and they are not arbiters. Decide their place explicitly now, or they will
+  quietly become the source of record for something.
+
+➡️ Recommend: **name an arbiter per area, and admit popular sources into the
+everyday level only, never outweighing the canon.** And say plainly that this
+table is provisional: it is the thing phase 2 most often revises. In the
+reference project the arbiter for one node had to change outright once the
+material was reached — the theorem the plan assumed was in the main source turned
+out not to be in it at all, and a different work took over that node. Expect that
+and it is a finding; do not expect it and it reads as the method failing.
+
+## Q4 — Depth levels
 
 The core ships three: everyday (an analogy, with its limits stated), working
 (definition, use, smallest example), academic (exact statement, sketch of the
@@ -60,7 +87,7 @@ analogy is the academic apparatus.
 declare one inapplicable with a reason. That is `levels_na`, and it is enforced:
 a level can be dropped with a stated reason, never silently.
 
-## Q4 — Where problems come from
+## Q5 — Where problems come from
 
 Three per concept in the reference project, with fixed roles: holding the
 definition · applying the result · **break the condition**.
@@ -79,7 +106,7 @@ where they do not — with two obligations. The source field says `author's own`
 and why it had to be, and its answers are pinned by executable checks in
 `checks/`. An author's own problem must not be less checkable than a borrowed one.
 
-## Q5 — Strictness
+## Q6 — Strictness
 
 What has to be true for a page to be trusted? Two dials:
 
@@ -99,7 +126,7 @@ Offer three settings rather than asking for numbers:
 about the failure mode of the others: a scale that everything passes measures
 nothing. If they pick light, say what they are giving up.
 
-## Q6 — Language and layout
+## Q7 — Language and layout
 
 Output language (the core's instructions are English; pages are written in
 whatever the learner reads in). Whether terms get their English original on first

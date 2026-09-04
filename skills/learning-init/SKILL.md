@@ -77,8 +77,9 @@ theorem differently, which one wins?" is answerable.
 ## Phase 1
 
 Read `references/phase-1.md` for the full question set with recommended answers.
-Six areas: subject and goal · corpus or live sources · depth levels · where
-problems come from · strictness · language and layout.
+Seven areas: subject and goal · corpus or live sources · **the canon** (who
+arbitrates each area, which problem sets, where popular sources are admitted) ·
+depth levels · where problems come from · strictness · language and layout.
 
 Output of phase 1:
 
@@ -97,9 +98,10 @@ start with. It will come out `draft`; that is correct."
 ## Phase 2
 
 Read `references/phase-2.md`. Runs only after at least one real page exists, and
-the questions are drawn **from that page**, not from a list. Five areas:
-independence · attainable check types · where the format bent · closure
-criterion · problem supply.
+the questions are drawn **from that page**, not from a list. Six areas: independence · attainable check
+types · where the format bent · closure criterion · problem supply · **what is
+deliberately being left out**, recorded with its reasoning so the same idea is not
+re-argued from nothing every few months.
 
 Open phase 2 by reading the page that was written and naming what went wrong in
 it. That is the material the whole phase is about.

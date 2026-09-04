@@ -161,7 +161,11 @@ The `confidence` tag is written **only** by `make check`. Never by hand. Thresho
 - **Diagrams:** mermaid only, never ASCII art.
 - **Page length:** 400–1200 words of connected prose; collapsed hint blocks do not count. Past that, split into a subfolder with an `index.md`.
 
-## 8. Current state
+## 8. Deliberately out of scope
+
+<!-- Filled in by /learning-init at phase 2: things considered and turned down, one line of reasoning each. Not a wishlist — a record of decisions, so the same idea is not re-argued from nothing every few months. -->
+
+## 9. Current state
 
 Scaffolded {today}. Domain layer at phase 1 — every page is capped at `draft` until /learning-init closes phase 2.
 """

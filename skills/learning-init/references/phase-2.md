@@ -5,7 +5,7 @@ what went wrong in it** — the friction is the agenda. If nothing went wrong, s
 so and ask a shorter round; a smooth first page usually means the subject is
 tamer than expected, not that the questions are unnecessary.
 
-Five questions.
+Six questions.
 
 ---
 
@@ -108,6 +108,32 @@ written for people who are already past the run-up.
 (`source: author's own` plus a stated reason; answers pinned by checks), and
 record in `CLAUDE.md` where the corpus is thin, so the gap is visible rather than
 rediscovered each time.
+
+## Q6 — What you are deliberately leaving out
+
+The question nobody thinks to ask, and the one that saves the most time later.
+
+By now the learner has met the material and had ideas about the base: a formal
+proof assistant, spaced repetition, a web viewer, a neighbouring topic that keeps
+suggesting itself. Some of those they have already decided against, for reasons
+that were good at the time.
+
+**Record the rejections with their reasoning.** Not a wishlist — a list of things
+considered and turned down, and why. Without it the same idea returns every few
+months and gets re-argued from nothing, usually reaching the same answer at the
+same cost.
+
+This is the same principle the audit channel runs on: a rejected note is archived
+with its reasoning rather than deleted, because the record of what was considered
+and refused is worth as much as the record of what changed. Scope decisions
+deserve the same treatment.
+
+➡️ Recommend: a short section in `CLAUDE.md` — "deliberately out of scope" — with
+one line of reasoning each. The reference project's entry for a proof assistant
+reads roughly: *gives a real guarantee, but formalising even one theorem is weeks
+of work, and the project would turn into learning the assistant instead of the
+subject.* That is the shape: what it would have bought, and what it would have
+cost.
 
 ---
 

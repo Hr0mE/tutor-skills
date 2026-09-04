@@ -43,7 +43,9 @@ ROOT = project_root()
 BOOKS = ROOT / "raw" / "books"
 OCRDIR = BOOKS / ".ocr"
 BATCH_FACTOR = 3   # pages per worker in one batch
-PAGE_RE = re.compile(r"^===== PDF-PAGE (\d+) =====$", re.M)
+# Written as PDF-PAGE; PDF-СТРАНИЦА is accepted too, so an index built by an
+# earlier version keeps working instead of silently yielding no pages.
+PAGE_RE = re.compile(r"^===== PDF-(?:PAGE|СТРАНИЦА) (\d+) =====$", re.M)
 
 # Priority order: the domain's load-bearing sources are indexed first, so work
 # can start without waiting for the whole run. The list comes from the domain

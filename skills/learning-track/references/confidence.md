@@ -19,6 +19,16 @@ Corollary worth internalising: **a page that will not reach the tag it "should"
 have is a finding, not an obstacle.** Report it. Never weaken a check, loosen a
 threshold, or add a source that merely retells one already cited.
 
+## Drafts are shown, not hidden
+
+A page computed as `draft` gets a visible banner at the top, inserted by
+`make check` and removed by it when the page earns a better tag. Hand-editing the
+banner is pointless — it is regenerated.
+
+The frontmatter tag alone is not enough, because nobody reads frontmatter.
+Concealing which pages are thin conceals where the base needs work, and the
+learner ends up trusting a page the system already knows is unreliable.
+
 ## The five types of check
 
 Fixed in the core. A subject declares which it can **attain**; it never invents a

@@ -86,6 +86,14 @@ rules:
     breaks_pattern: '^#{2,4}\s*Где\s+.*ломается'
   contested:
     section_pattern: '^#{2,4}\s*(Расхождени|Спор)'
+  # Inserted into and removed from draft pages by `make check`, like the tag it
+  # represents. Drafts are shown, not hidden: a frontmatter field nobody reads is
+  # not a warning, and concealing which pages are thin conceals where the base
+  # needs work. Do not edit the banner on a page by hand — it will be overwritten.
+  draft_banner: |-
+    > [!warning] Черновик — читать с недоверием
+    > Страница ещё не заслужила тег достоверности. Утверждения на ней могут быть
+    > неверны, не подкреплены источником, или и то и другое.
 
 # ── problems ────────────────────────────────────────────────────────────
 tasks:
