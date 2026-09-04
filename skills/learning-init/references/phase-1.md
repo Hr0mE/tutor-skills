@@ -6,6 +6,19 @@ subject's documentation. Half of Q2 and most of Q3 you can answer yourself.
 
 ---
 
+## Q0 — Where the base goes
+
+`scaffold.py` takes the root as an argument, so the session's own directory is not
+automatically the right one. Look for empty candidates and name them.
+
+The only thing this decides is where the learner will open Obsidian and run
+`make check` for the next year — which makes the folder name the base's name in
+practice.
+
+➡️ Recommend a directory named after the subject, and say plainly if the session
+is sitting somewhere provisional. A placeholder name tells them nothing in six
+months, and bases get opened by folder name, not by their `CLAUDE.md` title.
+
 ## Q1 — Subject, and what "I know this" would feel like
 
 What is being learned, and what is the itch? The reference project's answer was
@@ -44,11 +57,22 @@ differs marked on the page — otherwise the base teaches something that will no
 exist in their next repository. Look at what is actually on their disk before
 asking; the gap between installed and current is the whole question.
 
+**A corpus subject has the same second half, in a nastier form: which edition, and
+whose translation.** Page numbers do not survive a change of edition, and
+translations diverge on substance rather than only on style. Where a body of work
+has a canonical internal division — book, chapter, section, article, clause,
+paragraph number — that division is the locator that survives republication, and
+the page is a convenience on top of it. "Thucydides I.22" is checkable by anyone
+holding any edition; "Thucydides, p. 47" is checkable by nobody else.
+
 ➡️ Recommend: check their disk before asking. A folder of PDFs answers the first
 half. If corpus is on, turn `sources.require_page` on; if live, turn
 `sources.require_version` on — an unversioned citation in a fast-moving field is
 a claim about nothing — and pin the *current* release as canonical unless they
-are maintaining something old on purpose.
+are maintaining something old on purpose. For a corpus subject, require the
+edition and translation in the citation, and where a canonical division exists,
+make `loc` carry it — the page then rides along as a convenience rather than
+being the only handle.
 
 ## Q3 — The canon: who wins when two sources disagree
 
@@ -60,6 +84,21 @@ Ask it area by area, not once. A subject rarely has one authority — in the
 reference project a real-analysis text arbitrates compactness in Rⁿ, a functional
 analysis text arbitrates metric spaces, and a complex analysis text arbitrates
 normal families. Each is wrong outside its area.
+
+**In interpretive subjects the question splits in two, and merging them is the
+mistake.** History, literary study, much of the social sciences: there is no
+arbiter of *what actually happened*, and pretending otherwise puts a
+`verified` tag on somebody's reading. Ask separately:
+
+- **Who arbitrates what the source says?** The primary text, in a named edition.
+  It settles wording and nothing else.
+- **Who arbitrates how it is explained?** The secondary literature, by area — and
+  different schools will arbitrate different areas, one being wrong outside its own.
+
+Neither arbitrates the fact. Where the schools disagree, that disagreement is the
+content of the page — `status: contested` — not a defect to be resolved before
+writing. Say this out loud during the round: a learner who expects a single
+authority will read the absence of one as the base being unfinished.
 
 Then two follow-ons:
 
@@ -89,7 +128,15 @@ subjects rename them; some cannot support one of them at all.
 **The everyday level is the one that breaks.** An everyday analogy for `useEffect`
 exists and helps. An everyday analogy for JSX syntax does not. In history the
 everyday level often inverts — the material *is* everyday, and what needs the
-analogy is the academic apparatus.
+analogy is the mechanism behind it: a currency debasement wants a modern parallel,
+a battle wants none.
+
+**In any subject about the past, "where this analogy breaks" reads as
+anti-anachronism**: not "the picture is imprecise" but "what makes this situation
+categorically not ours". The failure mode is specific and durable — a modern
+category quietly substituted for a historical one lodges as fact and distorts
+everything downstream. Name that when specialising the template, so the section
+gets written as a defence rather than as a disclaimer.
 
 ➡️ Recommend: keep all three, and set the expectation that individual pages will
 declare one inapplicable with a reason. That is `levels_na`, and it is enforced:
@@ -108,6 +155,13 @@ The third role transfers further than it looks. In code it becomes *remove the
 dependency array, drop the `key`, call the setter during render* — and the break
 can be **run and watched**, which no mathematics problem can do. In history it
 becomes the counterfactual. Keep it.
+
+**A subject may need an obligatory element the core does not ship**, and adding one
+is legitimate — `tasks.roles` is a domain field. Where sources are testimony
+rather than proof, the usual addition is source criticism pinned to the first
+role: who is speaking, to whom, to what end, and what they leave out. Without it
+the subject degrades into memorising paraphrases. Add such an element as a
+*standing requirement with a reason*, not as an occasional extra.
 
 ➡️ Recommend: take from the sources where the sources have them, write your own
 where they do not — with two obligations. The source field says `author's own`

@@ -26,23 +26,13 @@ claude plugin install tutor-skills@tutor-skills
 
 `/plugin marketplace add …` works too where the slash command is available; it is not exposed in every environment. Newly installed skills appear only after a session restart — say so rather than letting the learner conclude it failed.
 
+**To update an existing install**, prefer `claude plugin update tutor-skills@tutor-skills`; if it reports "already the latest version" while the repository has moved, uninstall and install again. The updater compares the `version` field, so a release published without a version bump is invisible to it.
+
 **2. Preflight.** Check what this machine can actually do, because the answers depend on it, not the other way round: `uv`, or a `python3` whose `-m venv` can bootstrap pip; and the subject's own toolchain — a test runner, a compiler, Tesseract for a book corpus. **Report blockers before the interview, not after.** A strictness setting that assumes checks can run, on a machine where they cannot, produces a base where every page sits at `sourced` forever.
 
 **3. Look before asking.** Books on disk, existing code, what the subject's documentation looks like. Never ask for anything you could find yourself. The point of the interview is decisions, not data collection.
 
-**4. Greet, then hand off to `/learning-init`.** Confirm what is installed, say what the thing is for, say what happens next. Adapt the wording; keep the four parts:
-
----
-
-> **tutor-skills is installed** — `learning-init` and `learning-track`, version and commit shown above. They become available after a session restart.
->
-> **What this is.** Not a notes folder and not a summariser. You are going to build a base with two layers: atomic concept pages, each carrying every depth level in one file, and route pages that argue for the order they put those concepts in. Problems come with approach exercises and a collapsed hint ladder; solutions live apart so you cannot peek. How much of it is trustworthy is decided by a script, never by hand — `make check` owns that tag, and it measures whether checks exist, not how confident anyone felt.
->
-> **What you can do with it.** Plan a track and see the argument for its order. Write pages and have unsourced claims refused. Get problems that break on purpose so you can watch what the condition was holding up. File a correction against a specific line and have it answered, applied or argued down, and archived either way.
->
-> **What happens now.** Seven questions about your subject, each with a recommended answer — "go with your recommendations" is a legitimate reply, and you should object where one is wrong for you. Then I lay out the project and you write one page. **That page will come out `draft`. That is correct, not a failure:** half the rules it would be judged against do not exist yet. Answering the second round of questions — the ones that can only be asked once real material has pushed back — lifts the cap and re-scores everything for real.
->
-> Anything on the machine that will get in the way, I have listed above. Shall I start?
+**4. Hand off to `/learning-init`.** It opens with the orientation itself — what is installed, what this is, what they can do with it, what happens next — so do not write your own version here; the canonical text is in the skill and one copy is enough to keep them from drifting apart.
 
 ---
 

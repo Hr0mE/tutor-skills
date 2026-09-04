@@ -65,6 +65,10 @@ Working tree clean; see `git log` for the reasoning behind each change.
 
 Not on the list, deliberately: migrating `math_learning`. It works, it is finished, and taking apart the one thing that already runs in order to prove an architecture teaches nothing. It is the regression test, not a consumer.
 
+## 4a. Releasing
+
+**Bump `version` in `.claude-plugin/plugin.json` and `marketplace.json` on every release that changes behaviour.** The plugin cache is keyed by version and `claude plugin update` compares that field, not the commit — so fixes published under an unchanged version reach nobody, and the only way out is uninstall-and-reinstall. Three commits of fixes shipped under `0.1.0` before this was noticed. Currently `0.2.0`.
+
 ## 5. Settled — do not re-litigate
 
 Each of these cost a round of argument. The reasoning matters more than the verdict, so it is recorded rather than the conclusion alone.
@@ -93,6 +97,19 @@ Three defects, all fixed, all of a kind that only a real machine produces:
 - **A live subject has two source questions, not one.** Which version is the version of record is separate from corpus-or-live, and it is rarely the version installed. Folded into Q2.
 
 What the deployment did *right*, worth preserving as the pattern: it looked at the disk before asking anything, found an existing project on the subject, and counted hook usage to ground the first question in the learner's own code rather than in a topic list.
+
+### Found by the second live deployment (history, 2026-09-04)
+
+The preflight and the strictness precondition both worked on first contact: the broken `python3 -m venv` was caught before the interview rather than after, and Q6 produced the honest sequence (standard now → build the corpus → tighten once an `attested` check has actually passed) instead of promising a strictness the machine could not deliver.
+
+What it exposed:
+
+- **The orientation fired on one path out of several.** It lived in the README's quick-start block, which is read only when a human pastes the repository URL. A session that arrived by updating an existing install never saw it. Moved into `learning-init` itself, where it runs whatever the route.
+- **Releases without a version bump reach nobody.** See §4a.
+- **Interpretive subjects need two arbiters, not one.** There is no arbiter of what actually happened; the primary source settles wording, the secondary literature settles interpretation, and their disagreement is page content rather than a defect. Folded into Q3.
+- **A locator must survive republication.** Page numbers do not cross editions and translations diverge on substance; where a canonical division exists (book/chapter/section), that is the citation and the page rides along. Folded into Q2.
+- **Nobody knew the round could be answered in one line.** The skill now states the "1–7, go with your recommendations" shortcut explicitly, with the corollary for whoever writes the recommendations: one you would not want accepted wholesale is not finished.
+- **No question asked where the base should live.** Added as Q0 — the folder name is the base's name in practice.
 
 ### Standing
 

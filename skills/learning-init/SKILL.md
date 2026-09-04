@@ -81,6 +81,18 @@ together and the learner has to parse where the asking stops and the advice
 starts — on a round of seven that is the difference between answering and
 skimming.
 
+**Close the round by saying how cheaply it can be answered.** Spell out the
+shortcut in words, because a learner who does not know it exists will either
+write seven paragraphs or abandon the round:
+
+> Answer by number, as briefly as you like. **"1–7, go with your recommendations"
+> is a complete answer** — take it whole and object only where one is wrong for
+> you, e.g. *"1–7 by your recommendations, except Q5: the problems should come
+> from …"*.
+
+A recommendation you would not be willing to have accepted wholesale is not
+finished. Write each one so that "go with it" is a decision you would defend.
+
 Number them. Keep each question to a decision that changes what gets built.
 Find facts yourself — read their existing notes, look at the books on disk, check
 what the documentation for their framework actually looks like. **Never ask the
@@ -105,6 +117,19 @@ that the checks cannot run turns the trustworthiness scale into decoration.
   book corpus.
 
 Report the blockers **before** asking Q6, and let them change the recommendation.
+
+## Open with the orientation. Always.
+
+**Before the first question, every time — not only when you have just installed the plugin.** The learner may arrive by any route: a fresh install, an update, a second session, a project someone else set up. If the orientation lives only in the deployment instructions it fires on exactly one of those paths, and on the others the person meets seven questions with no idea what they are for.
+
+Four parts. Adapt the wording to the subject; keep all four.
+
+1. **What is installed and reachable** — the two skills, the version, and that skills appear only after a session restart.
+2. **What this is.** Not a notes folder and not a summariser. A base with two layers: atomic concept pages, each carrying every depth level in one file, and route pages that argue for the order they put those concepts in. Problems come with approach exercises and a collapsed hint ladder; solutions live apart so you cannot peek. How much of it is trustworthy is decided by a script — `make check` owns that tag, and it measures whether checks exist, not how confident anyone felt.
+3. **What they can do with it.** Plan a track and see the argument for its order. Write pages and have unsourced claims refused. Get problems that break on purpose, so they can watch what the condition was holding up. File a correction against a specific line and have it answered — applied or argued down, and archived either way.
+4. **What happens now.** The questions, then the project gets laid out, then one page. **That page will come out `draft`, and that is correct, not a failure** — half the rules it would be judged against do not exist yet. The second round, the one that can only be asked after real material has pushed back, lifts the cap and re-scores everything.
+
+Then the preflight results, then the round.
 
 ## Phase 1
 

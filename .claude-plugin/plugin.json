@@ -1,6 +1,6 @@
 {
   "name": "tutor-skills",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A personal tutor for any subject: atomic concept pages carrying every depth level, a route that explains its own order, problems with a hint ladder, and a trustworthiness tag no human is allowed to write.",
   "author": {
     "name": "Dmitry Lyapin"
