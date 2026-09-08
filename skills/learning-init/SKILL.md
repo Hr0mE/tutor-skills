@@ -250,8 +250,20 @@ compiler, Tesseract), not the learner's files what they contain.
 This is not ceremony — **the answers to Q6 depend on it**, and finding out later
 that the checks cannot run turns the trustworthiness scale into decoration.
 
-- `uv` present, or a `python3` whose `-m venv` can bootstrap pip. Without one of
-  the two, `make setup` cannot build the project's environment.
+- `uv` present, or a Python whose `-m venv` can bootstrap pip. Without one of the
+  two, setup cannot build the project's environment. **Prefer `uv` on every
+  platform** — it is the difference between seconds and a detour.
+- **The platform, and what it changes.** This is not trivia; it changes the
+  commands you and the learner will type for the rest of the project.
+
+  | | What to know |
+  |---|---|
+  | **Windows** | No `make`, and the scaffold writes none. Commands are `python tutor.py <command>`. The usual setup failure is the Microsoft Store build of Python, whose `python3` opens the Store and whose `venv` cannot bootstrap pip — recommend python.org Python or `uv`, and recognise the `ensurepip` error for what it is instead of debugging it as ours |
+  | **macOS** | `make` needs the Xcode command line tools and will *prompt to install them* if missing — a several-minute download in the middle of setup. Do not trigger it: use `python3 tutor.py` |
+  | **Linux** | Both work. Either form is fine |
+
+  The scaffold records the right form in the project's `CLAUDE.md` §0. **Read it
+  from there rather than assuming `make`**, in this session and every later one.
 - For a subject whose checks are executable: does its toolchain run *here*? A
   test runner that needs Node 20 on a machine with Node 18 is a blocker for
   `strict`, not a detail to mention in passing.

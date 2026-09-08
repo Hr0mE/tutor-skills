@@ -20,6 +20,7 @@ A Claude Code plugin: a personal tutor you assemble for your own subject — mat
 | `runtime/scripts/check_pages.py` | **The centre of the whole thing.** The only writer of `confidence`. 545 lines |
 | `runtime/scripts/_tutor.py` | Root resolution and domain-layer loading. Everything imports it |
 | `runtime/scripts/scaffold.py` | Lays out a project; generates the Makefile that points at the plugin |
+| `runtime/scripts/tutor.py` | **The entry point on every platform.** Command dispatcher; the generated Makefile is sugar that forwards to it |
 | `runtime/scripts/setup_venv.py` | Builds the project venv and **proves it by importing**. Stdlib only — it installs the dependency the core needs |
 | `runtime/scripts/{lint_wiki,audit_review,new_audit,reflow_md}.py` | Ported from math_learning, de-hardcoded, translated |
 | `runtime/capabilities/corpus/` | Optional: OCR, printed-page offsets, full-text search, catalogue |
@@ -148,6 +149,26 @@ They had not. The session's transcript shows eight commands: `pwd` and `ls` in i
 The defect is the sentence, not the behaviour: *"your other projects are written in Russian"* was extrapolated from a path name and stated as fact. **This is worse for trust than an actual violation**, because the learner's only evidence is the claim itself, and the claim says they were read. A gate nobody can verify is worth little; a gate whose agent misreports its own reach is worth less than none.
 
 Hence the rule now standing above the language question: **say where you got it, every time.** Auto-loaded context is named as such, something read is named as read and had to be inside the boundary, and a guess is marked a guess. A claim you cannot attribute is one to drop and ask about instead.
+
+### Windows and macOS (2026-09-09)
+
+A Windows test showed setup taking far longer than it should. The cause was not slowness anywhere in particular — **the interface was a Makefile**, and every line of it assumed a Unix shell:
+
+| Assumed | On Windows |
+|---|---|
+| `make` | absent |
+| `$(shell test -x .venv/bin/python …)` | no `test`, and the interpreter is `.venv\Scripts\python.exe` |
+| `$(shell command -v python3)` | no `command -v`; `python3` is often a Store stub that opens the Store |
+| `grep`/`awk` in the `help` target | absent |
+| `setup_venv.py` hardcoding `bin/python` | wrong path, so the venv "existed" and had nothing in it |
+
+Fixed by moving the logic into `runtime/scripts/tutor.py` — one stdlib dispatcher — and reducing the Makefile to sugar that forwards to it. The project gets a three-line `tutor.py` shim pointing at the runtime, which is a pointer and not a copy, so the architecture rule in §1 still holds. **No Makefile is generated on Windows at all**; `python tutor.py check` is the interface, and the scaffold writes the correct form into the project's own `CLAUDE.md` §0 so agents read it rather than assuming.
+
+macOS needed less but not nothing: `make` there triggers the Xcode command line tools prompt when they are absent — a multi-minute download landing in the middle of setup — so `tutor.py` is preferred there too.
+
+Verified on Linux for both paths, and the Windows branch of the scaffold was exercised by faking `os.name`, which proves the generation and not the execution. **Nobody has run this on a real Windows box yet** — that is the honest state.
+
+Routing was propagated to the places that would otherwise forget: the preflight in `learning-init`, the command note in `learning-track` and `verifier`, `docs/INSTALL.md`, the README's agent block, and the entry in the user's global `~/.claude/CLAUDE.md`.
 
 ### Standing
 

@@ -65,6 +65,10 @@ make check-dry     # report only
 make check         # recompute and write
 ```
 
+On Windows there is no `make`: the same two are `python tutor.py check-dry` and
+`python tutor.py check`. The project's `CLAUDE.md` §0 says which form applies —
+read it rather than assuming.
+
 While the domain layer is at phase 1 or 2, every page is capped at `draft`
 regardless of its sources and checks: it was written against rules that did not
 exist yet. Closing phase 2 lifts the cap and recomputes for real.

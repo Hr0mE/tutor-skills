@@ -10,10 +10,29 @@ The core is subject-neutral. It knows how to teach; it does not know your subjec
 
 ## 0. Prerequisites
 
-- **Claude Code** — any recent version.
-- **Python 3.10+** and **make**. Both are already on macOS and Linux.
-- **Obsidian** — optional but recommended; the pages are written for it.
-- **Tesseract and Poppler** — only if you are learning from scanned books. `brew install tesseract poppler` or `apt install tesseract-ocr poppler-utils`.
+**Claude Code**, **Python 3.10+**, and — strongly recommended on every platform — **[uv](https://docs.astral.sh/uv/)**. `uv` is what makes setup take seconds instead of a detour: it builds the environment without needing `pip` to bootstrap itself, which is the step that fails most often.
+
+| | Python | uv | Notes |
+|---|---|---|---|
+| **Linux** | preinstalled | `curl -LsSf https://astral.sh/uv/install.sh \| sh` | `make` usually present; not required |
+| **macOS** | preinstalled (or `brew install python`) | `brew install uv`, or the curl line above | `make` comes with the Xcode command line tools; if `make` prompts to install them, just use `python3 tutor.py` instead |
+| **Windows** | **install from [python.org](https://www.python.org/downloads/), not the Microsoft Store** | `powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 \| iex"` | There is no `make`, and none is needed — see below |
+
+> **Windows, the one thing that actually bites.** The Store build of Python ships a `python3` that opens the Store instead of running, and its `venv` cannot bootstrap `pip`. Setup then fails in a way that looks like the plugin's fault. Install Python from python.org, or install `uv`, which sidesteps the problem entirely. `setup` detects this case and says so rather than leaving you guessing.
+
+**Obsidian** is optional but recommended; the pages are written for it. **Tesseract and Poppler** only matter if you learn from scanned books: `apt install tesseract-ocr poppler-utils`, `brew install tesseract poppler`, or on Windows the UB-Mannheim Tesseract installer plus Poppler binaries on `PATH`.
+
+## 0a. Commands, on any platform
+
+Everything runs through one entry point that the scaffold puts in your project:
+
+```
+python tutor.py setup      # build the environment
+python tutor.py check      # recompute the trustworthiness tags
+python tutor.py help       # everything else
+```
+
+On Linux and macOS a `Makefile` is generated too, so `make check` does exactly the same thing — it forwards to `tutor.py`. **On Windows no Makefile is written**, because there is no `make`: use the `python tutor.py …` form, and read any `make X` in these documents as `python tutor.py X`. Your project's own `CLAUDE.md` records which form applies, in section 0.
 
 ## 1. Install the plugin
 
@@ -237,7 +256,13 @@ If `claude` is not on your `PATH`, the VS Code extension ships its own copy unde
 
 **`make check` says "no domain layer at .tutor/config.yaml".** `/learning-init` has not been run, or was run in a different directory. The core refuses to guess what a source or a check means in your subject, and that refusal is deliberate.
 
-**`ModuleNotFoundError: No module named 'yaml'`.** Run `make setup`.
+**`ModuleNotFoundError: No module named 'yaml'`.** Run `python tutor.py setup` (or `make setup`).
+
+**`make` is not recognised (Windows).** Expected — none is generated there. Use `python tutor.py <command>`; it is the same code the Makefile calls.
+
+**Setup fails on Windows with an `ensurepip` error.** That is the Microsoft Store Python. Install Python from python.org, or install `uv`; setup prefers `uv` when it is present and needs no `pip` at all.
+
+**`python` is not recognised (Windows).** Try `py -3 tutor.py …`, or re-run the python.org installer with "Add python.exe to PATH" ticked.
 
 **Every page is `draft` and nothing lifts it.** Look at the first line of `make check` output. If it says the domain layer is at phase 1 or 2, finish `/learning-init`. Otherwise read the `✗` lines: a missing `loc` on a source, a level neither written nor declared inapplicable, or an analogy without its "where this breaks" section will each hold a page at `draft` on their own.
 

@@ -31,6 +31,13 @@ line. This skill maintains both layers at once and that is the whole point:
 `/learning-init` — the core does not guess what a source or a check means in a
 subject it has not been told about.
 
+**The command form is recorded in the project's `CLAUDE.md`, section 0. Use it.**
+This document writes `make check` throughout because that is the shorter name, but
+on Windows no Makefile exists and every one of those reads as
+`python tutor.py check`. Both run the same code; guessing `make` on a machine
+without it produces a confusing failure in the one command the learner most needs
+to trust.
+
 **`privacy.scan` in that file is binding on you too.** The learner set it once,
 before the interview; writing pages is not a reason to widen it. Where you need
 something outside the boundary, ask for it by name and say what for — do not go
