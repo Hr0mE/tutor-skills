@@ -126,6 +126,21 @@ canon:
   popular_sources: >-
     Admitted into the everyday level only. Never outweigh the canon.
 
+# ── who is learning, and in what voice ─────────────────────────────────
+# From the short survey after the language question. Read by learning-track too,
+# so pages come out in the voice the learner chose rather than a house style.
+learner:
+  age_band: "14-17"        # under-14 | 14-17 | 18-25 | 26-40 | over-40 | unstated
+  background: >-
+    Knows JavaScript, has not used React. Copies working components without
+    knowing why they work.
+  # ^ written in the subject's own terms, not "beginner/intermediate/advanced"
+
+tutor:
+  style: mentor            # mentor | coach | socratic | storyteller | reference
+  notes: >-
+    Optional: anything they asked for that the five styles do not cover.
+
 # ── what may be read, and where ─────────────────────────────────────────
 # Set from the boundary question before the interview, and honoured by every
 # later session instead of being re-asked. A rule the agent follows, not a

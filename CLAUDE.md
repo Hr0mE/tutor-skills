@@ -170,6 +170,20 @@ Verified on Linux for both paths, and the Windows branch of the scaffold was exe
 
 Routing was propagated to the places that would otherwise forget: the preflight in `learning-init`, the command note in `learning-track` and `verifier`, `docs/INSTALL.md`, the README's agent block, and the entry in the user's global `~/.claude/CLAUDE.md`.
 
+### Plain language, and who is being taught (2026-09-09)
+
+Two changes that go together.
+
+**The vocabulary was the plugin author's, not the learner's.** About seventy hits across the interview files — *itch*, *arbiter*, *harness*, *canon*, *preflight*, *corpus*, *domain layer*, *strictness*, *closure criterion* — and the live runs rendered those questions nearly verbatim, so the learner got all of it. `phase-1.md` was rewritten from scratch in plain wording and `phase-2.md` given the same pass; both are now zero-jargon. The durable fix is the translation table in `SKILL.md` → *How to talk to the learner*, which also states the target: **a curious fourteen-year-old teaching themselves, addressed with complete respect.** Plain words are not talking down, and the two are easy to confuse in the wrong direction.
+
+The internal vocabulary stays in the instructions, where it is precise and useful. What changed is that it is now explicitly marked as *ours*, with a required translation before anything reaches a learner. `learning-track` and `concept-writer` carry the same rule, or the pages would drift back into specification prose while the interview stayed friendly.
+
+**A short survey now follows the language question**: age band (skippable, defaults to 14–17 wording with adult respect), background *in the subject's own terms* rather than beginner/intermediate/advanced, and one of five tutor voices — mentor, coach, socratic, storyteller, reference — each offered with what it costs. The five were shaped against what public assistants converged on, GPT-5's Cynic/Robot/Listener/Nerd and Claude's Concise/Explanatory/Formal, which is reasonable evidence those are the axes people actually notice.
+
+All three land in the domain layer as `learner.age_band`, `learner.background`, `tutor.style`, and **bind the page writer as well as the interview** — otherwise a warm interview hands over to pages that read like a datasheet. Background is the one that decides where the route starts; getting it wrong costs boredom or drowning, and both end the project.
+
+One interaction worth keeping in view: **storyteller collides with the comparison rule.** That style produces analogies faster than any other, and every analogy still owes a section on where it stops working. Choosing it does not relax the rule, it makes that section the busiest on the page — and the learner is told so when they pick it.
+
 ### Standing
 
 - **The interview has been tested against exactly one subject.** Four gaps surfaced from that single comparison (the arbiter table, popular sources, deliberate exclusions, the draft banner). Assume more, and treat each pilot as a test of the question set rather than only of the method.

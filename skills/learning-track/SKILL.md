@@ -31,6 +31,19 @@ line. This skill maintains both layers at once and that is the whole point:
 `/learning-init` — the core does not guess what a source or a check means in a
 subject it has not been told about.
 
+**Write in the learner's voice, not a house style.** `learner.age_band`,
+`learner.background` and `tutor.style` in the domain layer were chosen during the
+interview and they govern the pages too — vocabulary, which examples land, how much
+is explained before a problem, whether hints lead with a question or a fact. A base
+whose interview was warm and whose pages read like a specification has broken its
+own promise.
+
+The plain-language rule from `learning-init` applies here in full: **write for a
+curious fourteen-year-old, with complete respect.** Words like *arbiter*, *corpus*,
+*harness* or *domain layer* belong in these instructions and never on a page. Say
+"your books", "which source wins", "the thing that runs the tests", "the settings
+for your subject".
+
 **The command form is recorded in the project's `CLAUDE.md`, section 0. Use it.**
 This document writes `make check` throughout because that is the shorter name, but
 on Windows no Makefile exists and every one of those reads as

@@ -5,37 +5,38 @@ what went wrong in it** — the friction is the agenda. If nothing went wrong, s
 so and ask a shorter round; a smooth first page usually means the subject is
 tamer than expected, not that the questions are unnecessary.
 
-Six questions.
+Six questions, in the same plain wording as phase 1 — see `SKILL.md` → *How to talk to the learner*. These notes are for you; none of this vocabulary goes to the learner as-is.
 
 ---
 
-## Q1 — What independence means here
+## Q1 — What counts as two sources here, rather than one twice
 
-The core requires independent sources. It cannot judge independence — it can only
-count sources that do not declare `derives_from`. This question fixes what the
-learner should be declaring.
+A page needs backing from more than one place. But the script cannot tell whether
+two sources are really separate — all it can do is count the ones not marked as
+retelling another. This question decides what the learner should be marking.
 
-**The number two is a setting. Independence is the invariant.** Two textbooks
-retelling one monograph are one source counted twice. So are two blog posts
-paraphrasing the same documentation page. Mechanically applying "two sources" in
-a field where everything descends from one authority produces `verified` tags
-backed by nothing — the exact rot the machine-written tag exists to prevent.
+**The number two is adjustable. What matters is that the sources are genuinely
+separate.** Two textbooks retelling one original are one source counted twice, and
+so are two blog posts rewording the same documentation page. Applying "two sources"
+mechanically in a field where everything descends from one authority produces top
+marks backed by nothing — exactly the rot that a machine-written mark exists to
+prevent.
 
 Per-field answers worth offering:
 
-| Field | Independent | Not independent |
+| Field | Genuinely two | Really just one |
 |---|---|---|
 | Mathematics | proofs by different means | a textbook and its own problem book |
 | Fast-moving software | **execution vs documentation** | two articles restating the docs |
 | History | primary testimony vs another primary | three textbooks off one monograph |
 | Medicine, law | separate trials, separate rulings | a review citing the trial |
 
-➡️ Recommend: write the definition into `sources.independence` as a sentence the
-learner will actually re-read while citing, and — in fields where the literature
-is derivative — recommend that **execution counts as the second source** and a
-second document does not.
+➡️ Recommend writing it into `sources.independence` as one sentence the learner
+will actually re-read while adding a reference. In fields where most writing
+descends from one original, recommend that **running the thing counts as the second
+source** and a second document does not.
 
-## Q2 — Which check types are attainable
+## Q2 — Which kinds of checking are actually possible here
 
 The five are fixed: `formal`, `behavioral`, `illustrative`, `attested`,
 `contested`. Ask which this subject can really produce, using the page just
@@ -56,7 +57,7 @@ written as evidence.
 - **`contested`** — a page status, not a runner. Sources genuinely disagree and
   the disagreement is the content of the page.
 
-**`contested` deserves a direct question in the humanities.** In mathematics a
+**In the humanities, ask directly whether disagreement is a defect or the material.** In mathematics a
 source conflict is a rare edge case to be resolved. In history, historiography
 *is* the subject; a status under which disagreement files as "open question,
 pending resolution" mis-describes the entire field. Ask whether disagreement here
@@ -66,7 +67,7 @@ is a defect or the material.
 aspirational `attainable_types` is how the scale dies — every page falls short of
 a bar nobody can clear, and the learner starts ignoring the tag.
 
-## Q3 — Where the format bent
+## Q3 — Where the page format did not fit
 
 Concrete, from the page just written:
 
@@ -83,7 +84,7 @@ limits. "Syntax pages declare `levels_na.everyday` because a syntax rule has no
 everyday counterpart" is a rule. "Skip the everyday level when it is hard" is
 erosion, and in a year the format will be gone.
 
-## Q4 — What counts as done
+## Q4 — How will you know a topic is finished?
 
 The reference project's criterion: *derive the key result from scratch on paper,
 and solve three non-routine problems on it.* Sharp, testable, and not coverage.
@@ -97,7 +98,7 @@ dependency array is not an optimisation" is.
 the learner administers to themselves. If they cannot state it, the track is not
 yet designed — send it back to `track-planner` rather than settling for coverage.
 
-## Q5 — Problem supply, now that it has been tried
+## Q5 — Did the books actually have usable problems?
 
 Did the sources actually have problems at the right level for the first concept?
 Nearly always partly no — the reference project found its main problem book
@@ -109,13 +110,13 @@ written for people who are already past the run-up.
 record in `CLAUDE.md` where the corpus is thin, so the gap is visible rather than
 rediscovered each time.
 
-## Q6 — What you are deliberately leaving out
+## Q6 — What have you decided not to do?
 
 The question nobody thinks to ask, and the one that saves the most time later.
 
-By now the learner has met the material and had ideas about the base: a formal
-proof assistant, spaced repetition, a web viewer, a neighbouring topic that keeps
-suggesting itself. Some of those they have already decided against, for reasons
+By now the learner has met the material and had ideas about the base: a proof-checking
+tool, flashcards, a web viewer, a neighbouring topic that keeps suggesting
+itself. Some of those they have already decided against, for reasons
 that were good at the time.
 
 **Record the rejections with their reasoning.** Not a wishlist — a list of things

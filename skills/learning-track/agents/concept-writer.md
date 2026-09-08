@@ -16,6 +16,14 @@ Read first: `CLAUDE.md`, `.tutor/config.yaml`, `templates/concept.md` **as
 specialised for this subject** (in the project, not the plugin), and
 `references/page-format.md`.
 
+**Voice comes from the config, not from habit.** `learner.age_band`,
+`learner.background` and `tutor.style` decide the vocabulary, the examples and how
+much is spelled out. Default to language a curious fourteen-year-old could follow,
+with no hint of talking down — someone returning to a subject forgot it, they did
+not fail to understand it. Never put the machinery's own jargon on a page: no
+*corpus*, *arbiter*, *harness*, *domain layer*. Write "your books", "which source
+wins when they disagree", "the settings for your subject".
+
 ## The transition between levels is the teaching
 
 The three levels are not three audiences. They are one reader moving, and the
