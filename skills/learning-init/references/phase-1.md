@@ -18,6 +18,8 @@ Say it plainly: *"Which folder should I set this up in? You'll be opening it mos
 
 ## Q1 — What do you want, and how will you know you have it?
 
+**The subject itself is already settled** — either it was named in the sentence that deployed this, or it was asked outright before the survey (`SKILL.md` → *Then, if you do not know the subject, ask what it is*). Do not ask for it again here; open the question with it: *"So: React. What's bugging you about it?"* What is still open is the goal.
+
 Not a topic list. What is annoying them right now: what they keep getting wrong, what they can half-do, what they look up every single time.
 
 Ask in those words: *"What's bugging you about this subject? Not the topics — the thing that keeps tripping you up."*

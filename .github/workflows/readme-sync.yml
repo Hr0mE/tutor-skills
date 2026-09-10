@@ -1,0 +1,25 @@
+name: README sync
+
+# The seven READMEs are kept in step by hand. This catches the drift that a human
+# reviewer never catches — a section added on one side only, an image placed in five
+# files out of six, a switcher that forgot a language. It compares shape, not meaning.
+
+on:
+  push:
+    paths:
+      - 'README*.md'
+      - 'docs/img/**'
+      - 'tools/check_readme_sync.py'
+  pull_request:
+    paths:
+      - 'README*.md'
+      - 'docs/img/**'
+      - 'tools/check_readme_sync.py'
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tools/check_readme_sync.py

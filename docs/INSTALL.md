@@ -79,15 +79,15 @@ Then:
 
 ## 4. Phase 1 — seven questions
 
-Before the round, two things happen that are not questions about your subject. You are asked **which language to work in** — the default is whatever you have been writing in — and **how far you are willing to let the agent look around your disk**, as a checkbox question. Grounding the interview in what is actually on your machine makes it much shorter; declining is a legitimate answer, and the cost is simply that more gets asked out loud.
+Before the round, a few things happen that are not questions about your subject. You are asked **which language to work in** — the default is whatever you have been writing in. Then, **if you have not said what you want to learn**, that: pasting the quick-start line with its `<YOUR_SUBJECT>` placeholder still in it is the ordinary way that happens, and it is a supported path — everything after this point is pitched at your subject, so it has to be asked before anything else. Then **three quick things about you**: an age band you may skip, where you stand in this subject in that subject's own words rather than beginner/intermediate/advanced, and which of five voices the tutor should use. And last, **how far you are willing to let the agent look around your disk**, as a checkbox question. Grounding the interview in what is actually on your machine makes it much shorter; declining is a legitimate answer, and the cost is simply that more gets asked out loud.
 
 Then the round: numbered questions, each with a recommended answer. **"1–7, go with your recommendations" is a complete answer** — object only where one is wrong for you.
 
 An abridged real exchange:
 
-> ❓ **Q1 — Subject, and what "I know this" would feel like.** What is being learned, and what is the itch?
+> ❓ **Q1 — What's bugging you about React?** Not the topics — the thing that keeps tripping you up.
 >
-> ➡️ Recommend naming the itch rather than a topic list.
+> ➡️ Recommend naming that rather than a topic list.
 >
 > — React. I can write components but I copy patterns without knowing why they work. I want the "I've seen this before but never understood it" feeling gone.
 >

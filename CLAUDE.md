@@ -64,11 +64,26 @@ Working tree clean; see `git log` for the reasoning behind each change.
 
 **5. Run the corpus capability end-to-end once**, on a subject that actually needs it, so `make ocr` is exercised through the plugin path rather than inherited on trust from math_learning.
 
+**6. Presentation, and the translated READMEs.** **The Russian landing was signed off on 2026-09-10 and is the reference for every other language** — a landing-page shape, not a translation of the English essay. Its vocabulary was rewritten once after the first draft came back too dense; the target is stated and is the same rule `SKILL.md` puts on the interview: readable at fourteen, addressed as an adult.
+
+Six translations ship, each a sibling in the repository root with a seven-entry switcher line, all sharing `docs/img/` and the English badge labels (identical across languages on purpose — one fewer thing that can drift): `README.ru.md` · `README.zh-CN.md` · `README.ko.md` · `README.ja.md` · `README.fr.md` · `README.de.md`.
+
+**The English README was cut down to the same landing on 2026-09-10**, so `README.md` is the source again and a translation is diffed against it. Two anchors had to survive that rewrite, because all six translations link into them: `#quick-start` (which carries the agent's deployment block) and `#the-five-types-of-check`. They occupy the slot where a translation says "what is still only in English" — that is why the English file has nine sections like the rest instead of ten.
+
+What this still needs:
+
+- **Images. Done 2026-09-10** — `docs/img/` holds three screenshots off the real base and one social card, placed in all six translations: `page-levels.png` (the everyday level running into "where this analogy breaks" and on into the working level), `page-properties.png` (the frontmatter cropped to `confidence: verified` and three passed checks), `page-problems.png` (the break-the-condition problem with one hint open and two collapsed), and `social-preview.png` (1280×640, composed here with ImageMagick from a split-screen shot plus a text block in Inter). They were assembled from the shots saved into `math_learning/demo/`. A later, better set was pasted into the chat and never written to disk, and an image in a conversation cannot be recovered to a file — **ask for screenshots as files, not as pastes.**
+- **The social preview is not installed.** GitHub exposes no API for it and `gh` cannot set it; it is Settings → General → Social preview → Upload, by hand, from `docs/img/social-preview.png`. Left to the owner.
+- **Repository metadata.** Description and topics were set on 2026-09-10 with the owner's consent (`gh repo edit`; ten topics from `claude-code` to `curriculum`). The wiki is still enabled and empty — an empty tab nobody will fill.
+- **Keeping translations in step. Done 2026-09-10** — `tools/check_readme_sync.py` compares every `README.*.md` against `README.md`: the count of H2 sections, images, mermaid blocks and `<details>` blocks; the switcher listing all seven languages with itself unlinked; every relative link and image path resolving. `.github/workflows/readme-sync.yml` runs it on any push touching a README, `docs/img/` or the script itself — the repository's first CI. **It compares shape and never meaning**, deliberately: every drift that has actually happened here showed up in the shape first, and a script that claimed to check wording would be a false comfort. Prose parity is still a human's job.
+
 Not on the list, deliberately: migrating `math_learning`. It works, it is finished, and taking apart the one thing that already runs in order to prove an architecture teaches nothing. It is the regression test, not a consumer.
 
 ## 4a. Releasing
 
-**Bump `version` in `.claude-plugin/plugin.json` and `marketplace.json` on every release that changes behaviour.** The plugin cache is keyed by version and `claude plugin update` compares that field, not the commit — so fixes published under an unchanged version reach nobody, and the only way out is uninstall-and-reinstall. Three commits of fixes shipped under `0.1.0` before this was noticed. Currently `0.3.0` — the scan-boundary gate changed behaviour, so it took a bump.
+**Bump `version` in `.claude-plugin/plugin.json` and `marketplace.json` on every release that changes behaviour.** The plugin cache is keyed by version and `claude plugin update` compares that field, not the commit — so fixes published under an unchanged version reach nobody, and the only way out is uninstall-and-reinstall. Three commits of fixes shipped under `0.1.0` before this was noticed. Currently `0.7.0` — the subject question changed the order of the interview, so it took a bump.
+
+**And a release that changes behaviour must sweep the human-facing files too** — `README.md`, every `README.<lang>.md`, `docs/INSTALL.md`. Three facts had gone stale by 2026-09-10 because it did not: the README still said `v0.1` at 0.6.0, still listed `make` as a requirement two releases after `tutor.py` replaced it, and `INSTALL.md` never learned about the survey added in 0.6.0. The skills are read by the model and get fixed when they misbehave; these files are read only by people, who have no way to tell they are out of date. **Run `python3 tools/check_readme_sync.py` before tagging** — it catches the half of that which is mechanical (a section, an image or a language present in one file and not the others); the wording still has to be read.
 
 ## 5. Settled — do not re-litigate
 
@@ -183,6 +198,16 @@ The internal vocabulary stays in the instructions, where it is precise and usefu
 All three land in the domain layer as `learner.age_band`, `learner.background`, `tutor.style`, and **bind the page writer as well as the interview** — otherwise a warm interview hands over to pages that read like a datasheet. Background is the one that decides where the route starts; getting it wrong costs boredom or drowning, and both end the project.
 
 One interaction worth keeping in view: **storyteller collides with the comparison rule.** That style produces analogies faster than any other, and every analogy still owes a section on where it stops working. Choosing it does not relax the rule, it makes that section the busiest on the page — and the learner is told so when they pick it.
+
+### The subject was assumed, never asked (2026-09-10)
+
+The README's quick-start line said *"we are going to adapt it for learning React"*, and React was a live example that had been left standing in a template. Anyone pasting the line unchanged deployed a tutor for a subject they had not chosen; anyone editing it did so with no hint that they were expected to. The line now carries `<YOUR_SUBJECT>`, and pasting it **intact** is a supported path rather than a mistake.
+
+That places a new step in the interview: **language, then the subject if it is not known, then the survey.** The dependency is the reason for the order rather than tidiness — the survey's background question is generated from the subject's own rungs, and its whole point is not to be "beginner / intermediate / advanced"; asked before the subject is known it degrades to exactly that. The orientation has the same problem one step later.
+
+The rule that goes with it, and the one worth keeping: **the subject is asked, never inferred.** The folder name and the files on disk are not an answer, and the disk is behind a boundary that has not been set at that point. It is the most expensive guess available, since everything downstream sits on it and a wrong one surfaces only after the scaffold.
+
+Where the subject *was* named, nothing changes: say it back once while settling the language, and run the known order. Q1 of phase 1 no longer asks what the subject is either way — it opens with it and asks for the goal.
 
 ### Standing
 

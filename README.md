@@ -1,21 +1,41 @@
+<div align="center">
+
 # tutor-skills
 
-A personal tutor you assemble for your own subject — mathematics, React, physics, chemistry, history.
+**A personal tutor you assemble for your own subject** — mathematics, React, physics, chemistry, history.
 
-Not a note-taking system and not a summariser. It builds a base with two layers and a rule that the machine, not you, decides how much of it is trustworthy.
+[![plugin](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FHr0mE%2Ftutor-skills%2Fmaster%2F.claude-plugin%2Fplugin.json&query=%24.version&label=plugin&color=2f6f4f)](.claude-plugin/plugin.json)
+[![Claude Code](https://img.shields.io/badge/Claude%20Code-plugin-6b4fbb)](https://docs.claude.com/en/docs/claude-code/overview)
+[![license](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
-**[Installation and first page →](docs/INSTALL.md)**
+**English** · [Русский](README.ru.md) · [简体中文](README.zh-CN.md) · [한국어](README.ko.md) · [日本語](README.ja.md) · [Français](README.fr.md) · [Deutsch](README.de.md)
+
+</div>
+
+This is not a notes folder, and not a thing that summarises books at you.
+
+You build yourself a textbook for your own subject. It holds two things: **pages** — one per idea — and a **route** that says which order to go through them in, and why that order.
+
+Every page carries a mark: how far you can trust what is written on it. A script puts that mark there — it counts sources and passing checks. Nobody can type it in by hand, and that is the whole point.
+
+![A concept page in Obsidian: the everyday comparison, then "where this analogy breaks", then how the thing is actually used](docs/img/page-levels.png)
+
+*This is what a page looks like. The screenshots are from a demo page in English; a base in any other language looks exactly the same, in that language.*
 
 ## Quick start
 
 Make an empty folder, open Claude Code in it, and paste this:
 
-> Install and deploy this project locally: https://github.com/Hr0mE/tutor-skills — we are going to adapt it for learning React.
+> Install and deploy this project locally: https://github.com/Hr0mE/tutor-skills — we are going to adapt it for learning `<YOUR_SUBJECT>`.
 
-Substitute your own subject. That is the whole human-facing procedure: the agent reads the rest of this file, installs the plugin, checks the machine can run what the subject needs, and starts the interview. [docs/INSTALL.md](docs/INSTALL.md) is the long form — written for the agent, and for a human who wants to see every step before it happens.
+Put what you want to learn in place of `<YOUR_SUBJECT>` — or **paste the line exactly as it stands**. Then you will be asked what you want to learn before anything else is asked. That is a supported path, not a mistake.
+
+The rest happens on its own: the plugin installs, the machine is checked for whether it can run the kind of verification your subject needs, and the interview starts. It happens in the language you write in — you will be asked about that too.
+
+Step by step, at length: [docs/INSTALL.md](docs/INSTALL.md).
 
 <details>
-<summary><b>For the agent deploying this</b> — the four steps, and what to say when they are done</summary>
+<summary><b>For the agent deploying this</b> — the six steps, and what to say when they are done</summary>
 
 **1. Install.** The repo is its own marketplace.
 
@@ -30,11 +50,13 @@ claude plugin install tutor-skills@tutor-skills
 
 **2. Settle the language before saying anything else.** Default to the language the learner is writing to you in — that signal is in the conversation and needs no permission — and confirm it with one structured question rather than assuming. Everything after it, greeting included, happens in that language. This matters more since the scan boundary went in: the language used to be inferred from the learner's existing pages, and once that reading stopped, English became the accidental default for people who had never written a word of it here.
 
-**3. Preflight, and note the platform.** On Windows there is no `make` and the scaffold does not write one — commands are `python tutor.py <command>`, and the Store build of Python is the usual cause of a failed setup (install python.org Python, or `uv`). On macOS `make` needs the Xcode command line tools, so prefer `tutor.py` rather than triggering that prompt. The scaffold records the correct form in the project's `CLAUDE.md` §0; use what it says instead of assuming `make`. Then check what this machine can actually do, because the answers depend on it, not the other way round: `uv`, or a `python3` whose `-m venv` can bootstrap pip; and the subject's own toolchain — a test runner, a compiler, Tesseract for a book corpus. **Report blockers before the interview, not after.** A strictness setting that assumes checks can run, on a machine where they cannot, produces a base where every page sits at `sourced` forever.
+**3. If they have not said what they want to learn, ask — before anything else you were going to say.** The line above ships a `<YOUR_SUBJECT>` placeholder and it gets pasted intact; a learner who did that has told you they want a tutor and nothing at all about what for. Ask it straight after the language, as one open question, and **never infer it** from the folder name, the files on disk or anything else — the boundary that would permit that reading has not been set yet, and every later answer is built on this one. `/learning-init` carries the wording and the order that follows it. Where the subject *was* named, say it back once while settling the language and carry on as normal.
 
-**4. Ask what you may look at, then look.** Grounding the interview in what is on the machine is also a stranger reading someone's work, so the boundary is set first — a checkbox question, one click, before any enumeration. Inside it, never ask for what you could find yourself; outside it, ask and say why. `/learning-init` carries the exact wording and records the answer in the domain layer, where every later session is bound by it.
+**4. Preflight, and note the platform.** On Windows there is no `make` and the scaffold does not write one — commands are `python tutor.py <command>`, and the Store build of Python is the usual cause of a failed setup (install python.org Python, or `uv`). On macOS `make` needs the Xcode command line tools, so prefer `tutor.py` rather than triggering that prompt. The scaffold records the correct form in the project's `CLAUDE.md` §0; use what it says instead of assuming `make`. Then check what this machine can actually do, because the answers depend on it, not the other way round: `uv`, or a `python3` whose `-m venv` can bootstrap pip; and the subject's own toolchain — a test runner, a compiler, Tesseract for a book corpus. **Report blockers before the interview, not after.** A strictness setting that assumes checks can run, on a machine where they cannot, produces a base where every page sits at `sourced` forever.
 
-**5. Hand off to `/learning-init`.** It opens with the orientation itself — what is installed, what this is, what they can do with it, what happens next — so do not write your own version here; the canonical text is in the skill and one copy is enough to keep them from drifting apart.
+**5. Ask what you may look at, then look.** Grounding the interview in what is on the machine is also a stranger reading someone's work, so the boundary is set first — a checkbox question, one click, before any enumeration. Inside it, never ask for what you could find yourself; outside it, ask and say why. `/learning-init` carries the exact wording and records the answer in the domain layer, where every later session is bound by it.
+
+**6. Hand off to `/learning-init`.** It opens with the orientation itself — what is installed, what this is, what they can do with it, what happens next — so do not write your own version here; the canonical text is in the skill and one copy is enough to keep them from drifting apart.
 
 ---
 
@@ -42,20 +64,66 @@ claude plugin install tutor-skills@tutor-skills
 
 ## What it makes
 
-| Layer | What it is |
+| Folder | What is in it |
 |---|---|
-| `wiki/concepts/` | Atomic concepts. Every depth level inside **one** page, because the transition between levels is the teaching |
-| `wiki/tracks/` | Route pages: the order of concepts and **why** that order |
+| `wiki/concepts/` | The pages. One per idea, and every explanation of that idea in a single file, one after another |
+| `wiki/tracks/` | The route. Which order to go through the pages in, and why that one |
 
-A reference book read straight through is mush. A course cut into atoms loses the line. The second layer is what resolves that: concepts stay atomic and reusable across subjects, and the track holds the argument through them.
+A reference book read straight through turns to mush: everything is in there, but what it was for is gone. A course cut into separate cards loses the thread. So both are here: a page can be taken on its own and reused in another topic, and the route holds the argument between them.
 
-## The three ideas worth stealing even if you never install this
+**A page explains the same thing three times over**, and moving from one explanation to the next is what learning actually is:
 
-**An analogy without stated limits is worse than no analogy.** Every everyday-level explanation must be followed by a section on where the analogy breaks. Without it the picture installs itself as fact and obstructs for years, invisibly, because it never announced it was a simplification. This is enforced: a page carrying an analogy and no limits section fails the check.
+- **through an everyday example** — what it resembles in ordinary life, followed immediately by a paragraph on where the example lies;
+- **how it is used** — the definition and the smallest example that shows why the thing exists at all;
+- **in full** — the exact statement with all its conditions, and how it works underneath.
 
-**The trustworthiness tag is written by a script and never by a human.** The scale measures the presence of checks, not the confidence of whoever wrote the text. The moment it can be set by hand it drifts upward and stops meaning anything — and an inflated scale is worse than none, because it is still trusted.
+Then comes practice. First two or three short warm-ups, then the problems. Each problem carries three collapsed hints: you unfold one at a time, and only when you are stuck. The answers live in a separate file, so your eye cannot land on them by accident.
 
-**Independence, not the number two.** Two textbooks retelling one monograph are one source counted twice; so are two articles paraphrasing one documentation page. What independence *means* is a per-subject answer — different proofs, primary testimony against primary testimony, or **execution against documentation** — and the machine counts only sources that do not declare themselves derivative.
+## Three ideas worth stealing even if you never install this
+
+**A comparison with no stated limits is worse than no comparison at all.** The everyday example must be followed by a paragraph saying where it stops holding. Without it the example installs itself as fact and obstructs for years — invisibly, because it never announced that it was a simplification. Here this is not advice: a page carrying a comparison and no limits fails the check.
+
+**The trust mark is written by a script, never by a person.** It does not measure how sure the writer felt; it measures what can be counted — how many sources, how many checks passed. The moment it can be set by hand it drifts upward and stops meaning anything. An inflated scale is worse than none, because it is still believed.
+
+![Page properties: confidence reads verified, and below it three checks that passed](docs/img/page-properties.png)
+
+**Two sources are not always two sources.** Two textbooks retelling the same book are one source counted twice. Two articles about the same page of documentation, likewise. What counts as two separate sources is decided per subject: two different proofs, two witnesses who have not read each other, or code actually run against what the documentation promises. The script counts only sources that do not declare themselves derived from another.
+
+## Where your subject's settings come from
+
+The plugin knows how to teach, but it does not know your subject: what counts as a source here, what counts as a check, and what tells you a topic is finished. That gets settled in an interview — and the interview runs **in two rounds, with a real page written in between**.
+
+```mermaid
+flowchart LR
+  A["interview,<br/>first round"] --> B["settings for<br/>the subject"]
+  B --> C["one page<br/>(it comes out a draft)"]
+  C --> D["interview,<br/>second round"]
+  D --> E["recount: the marks<br/>become real"]
+```
+
+The cut is not placed at random. The first round asks what can be known in advance. The second asks what only real material can show. "What counts as two separate sources in your subject?" looks like a clear question right up until you try to answer it seriously: before the first page the answer is plausible and wrong; after it, the answer is real.
+
+A page written before the second round is marked a draft whatever backs it up: the rules it would be judged by did not exist yet. The second round lifts that ceiling and recounts everything.
+
+The method itself lives in the plugin and updates with it. Only the settings for your subject land in your folder. So when the method improves, the improvement reaches every base you have already started — instead of leaving you with five frozen copies of it.
+
+## Problems
+
+Three per page, each with its own job: **hold the definition** · **apply the result** · **break the condition** — remove one hypothesis and watch what collapses. The third one cures the most common confusion in any subject: which condition carries the construction, and which is only standing there.
+
+A problem statement on its own is not enough. Someone stuck with nothing to hold onto simply closes the page. So the problem is preceded by **short exercises** — not pieces of the solution, but a check that the tool you need is in your hand. And inside the problem, **three hints of increasing strength**: where to look · what to use · nearly the whole construction, leaving only the arithmetic.
+
+![The break-the-condition problem: the approach exercises, the first hint collapsed, the second unfolded, the third collapsed](docs/img/page-problems.png)
+
+## When you disagree with a line
+
+The objection goes into the `audit/` folder, not into the chat. What is said in a conversation dies with that conversation. A note in `audit/` is anchored to a specific passage of a specific page, processed as its own piece of work, and archived together with its resolution — **rejections included, with the reason for rejecting**. Nothing is deleted.
+
+## If you learn from books
+
+For subjects learned from books, the book machinery switches on: search across all your books at once, and the page offset worked out automatically. Page 91 of the file is, say, page 79 of the book; a reference that ignores this is twelve pages out, and then nobody can check it.
+
+The text a program pulls out of a scan is good only for finding the place. Anything entering the base as a quotation is checked by eye against the image of the page: character recognition mangles indices, quantifiers and Greek letters, and a mangled formula wearing a "verified" mark is the worst thing this system can produce.
 
 ## The five types of check
 
@@ -71,32 +139,8 @@ Fixed in the core. A subject declares which it can attain; it never invents a si
 
 `attested` is what keeps the scale alive in subjects where nothing is executable. It is machine-checkable — the quoted words are on the cited page or they are not — and it is the only thing a machine can honestly certify about a documentary claim.
 
-## How a subject gets configured
-
-The core knows how to teach. It does not know your field. `/learning-init` interviews you and writes the **domain layer**: the arbiters, what a source is, what a check is, what "done" means here.
-
-The interview runs in **two phases with a real page written in between**, and the split is the design: phase 1 asks what can be known before touching the material, phase 2 asks what only the material can tell you. Asked up front, "what counts as an independent source in your field?" gets a plausible answer that turns out wrong; asked after one page has been cited, it gets the real one. Pages written during phase 1 are capped at `draft` and recomputed when phase 2 closes.
-
-The core stays in the plugin and updates with it. Only the domain layer is generated into your project — so improving the method reaches every base you have already started, instead of leaving you with several frozen forks of it.
-
-## Problems
-
-Three per concept by default, with fixed roles: holding the definition, applying the result, and **break the condition** — what falls apart when a hypothesis is removed. That third role repairs the deepest confusion in any subject, the one between a condition that carries load and a condition that is decoration.
-
-A statement on its own is not enough, because a stuck learner with nothing to hold onto closes the page. So each problem carries **approach exercises** (short steps that check the tool is in your hands, not parts of the solution) and a **hint ladder** of three collapsed blocks: where to look, which tool, nearly the whole construction. Solutions live in a separate file, and links point at a specific heading rather than the file — otherwise, on the way to your own problem, your eye catches someone else's.
-
-## Feedback
-
-Corrections go into `audit/`, not into chat. What is said in a conversation dies with it; a note in `audit/` is anchored to a passage, processed as its own operation, and archived with its resolution — **including rejections, with the reasoning**. Nothing is deleted.
-
-## Optional: learning from books
-
-For subjects whose sources are stable works, the corpus capability adds a text index, full-text search, and automatic determination of the **printed-page offset** — a PDF's page 91 is the book's page 79, and a citation that ignores that is wrong by twelve pages, which means nobody can check it.
-
-OCR output is for navigation only. Any wording that enters the base as a quotation is checked against the page image, because OCR mangles indices, quantifiers and Greek letters, and a mangled formula wearing a `verified` tag is the worst thing this system can produce.
-
 ## Status
 
-**v0.1 — early.** The method was developed on one completed mathematics track and is being generalised; expect the domain layer's schema to move. See [NOTICE](NOTICE) for what this is built on, and [docs/INSTALL.md](docs/INSTALL.md) to start.
+**Early.** The method grew out of one mathematics track carried to the end and is being reworked to fit any subject. The settings will still move.
 
-Requires Claude Code, Python 3.10+, and `make`. MIT licensed.
+Requires Claude Code and Python 3.10 or newer. `make` is optional and does not exist on Windows at all — everything there goes through `python tutor.py <command>`. See [NOTICE](NOTICE) for what this is built on. MIT licensed.

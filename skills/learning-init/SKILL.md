@@ -12,7 +12,10 @@ description: >-
   when the method has started to strain. Not for writing pages: that is
   learning-track. Before anything else — before installing, reporting a preflight
   or greeting — work out the learner's language and use it: default to the
-  language they are writing to you in, and confirm rather than assume.
+  language they are writing to you in, and confirm rather than assume. Then, if
+  they have not said what they want to learn — the quick-start line pasted with
+  its `<YOUR_SUBJECT>` placeholder intact — ask that next, before the survey and
+  the greeting, and never guess it from the folder name or the disk.
 ---
 
 # learning-init — assembling the domain layer
@@ -218,10 +221,57 @@ What does **not** change: the skills' own instructions, this file included, stay
 English, and so do the field names in `.tutor/config.yaml`. The output language is
 a parameter of the base, not a translation of the machinery.
 
+## Then, if you do not know the subject, ask what it is
+
+**The one thing that has to be settled before the survey, and the one thing the
+learner may never have said.** The quick-start line in the README carries a
+placeholder — *"we are going to adapt it for learning `<YOUR_SUBJECT>`"* — and it
+gets pasted exactly as it stands. Somebody who did that has told you they want a
+tutor and nothing whatsoever about what for.
+
+Treat the subject as **not said** whenever: the placeholder is still there in any
+form (`<YOUR_SUBJECT>`, `YOUR_SUBJECT`, a translated version of it); the sentence
+arrives with the subject simply cut out; or the session opens on
+`/learning-init` with no subject anywhere in the conversation.
+
+**Why here, and not as part of the round.** Everything between this point and the
+round is pitched *at* the subject. The survey's second question — where they
+stand — has to be built from the subject's own rungs, and "beginner /
+intermediate / advanced" is precisely what that question exists to avoid; asked
+in ignorance it collapses back into exactly that. The orientation describes what
+the base will do in terms of their material. Neither survives not knowing.
+
+**Do not guess it, and do not go looking.** The folder name, the files on disk,
+the language they write in — none of these is an answer, and the disk is behind a
+boundary that has not been set yet. This is the most expensive guess on offer:
+the whole base is built on top of it, and a wrong one is discovered after the
+scaffold.
+
+Ask it open, not as a menu. A list of subjects invites people to pick the nearest
+one rather than name their own:
+
+> *"What do you want to learn? Anything counts — a subject, a library, a period, one thing that keeps tripping you up. If it moves — a framework, a tool — say which version you care about."*
+
+One line back is enough to go on. **Do not chase the goal here**: what is
+annoying them is Q1 of phase 1, asked later with the rest of the round and with a
+recommendation under it. All you need now is the name of the thing. If the answer
+is genuinely too broad to build on — "programming", "history" — narrow it with one
+follow-up rather than the whole round.
+
+Then carry on in the normal order: the survey, the orientation, the boundary
+question, the preflight, the round. **Do not ask for the subject a second time in
+Q1** — open it with the answer instead: *"So: React. What's bugging you about
+it?"*
+
+When the subject **was** named — "we are going to adapt it for learning React", or
+any sentence saying what they want — this step does not happen at all. Say it back
+once while settling the language, so a misreading surfaces now rather than after
+the scaffold, and move on.
+
 ## Then a short survey: who is learning, and how they want to be taught
 
-Right after the language, before the greeting. Three questions, checkboxes, under
-a minute. **Say why you are asking** — *"three quick things so I pitch this right"*
+Right after the subject is known, before the greeting. Three questions,
+checkboxes, under a minute. **Say why you are asking** — *"three quick things so I pitch this right"*
 — because a stranger asking your age with no reason given is unpleasant.
 
 Everything here shapes the rest: the words you use, the examples you pick, what you
